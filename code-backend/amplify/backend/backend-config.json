@@ -1,0 +1,48 @@
+{
+  "api": {
+    "backend": {
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "apiKeyConfig": {
+              "apiKeyExpirationDate": "2026-05-13T14:59:12.313Z",
+              "apiKeyExpirationDays": 365,
+              "description": ""
+            },
+            "authenticationType": "API_KEY"
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
+  "auth": {},
+  "function": {
+    "updateSiteStats": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_updateSiteStats_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "updateSiteStats"
+        }
+      ]
+    },
+    "AMPLIFY_function_updateSiteStats_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "updateSiteStats"
+        }
+      ]
+    }
+  }
+}
