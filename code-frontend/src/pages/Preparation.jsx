@@ -14,16 +14,17 @@ Amplify.configure(awsconfig);
 const client = generateClient();
 
 function Preparation() {
-  const [visitorCount, setVisitorCount] = useState(0);
-  const [likeCount, setLikeCount] = useState(0);
+  const [visitorCount, setVisitorCount] = useState(null);
+  const [likeCount, setLikeCount] = useState(null);
   const [hearts, setHearts] = useState([]);  // 飛び散るハートの状態を管理
   const [isLiked, setIsLiked] = useState(false);  // いいねアニメーション用の状態
   const likeValueRef = useRef(null);  // いいねの数字の要素への参照
 
   // 初期データの取得
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchAndUpdateVisitor = async () => {
       try {
+        // 現在の値を取得
         const result = await client.graphql({
           query: `
             query GetStats($id: ID!) {
@@ -34,21 +35,43 @@ function Preparation() {
               }
             }
           `,
-          variables: {
-            id: 'global-stats'
-          }
+          variables: { id: 'global-stats' }
         });
-        
+
         if (result.data.getStats) {
-          setVisitorCount(result.data.getStats.visitorCount);
+          const currentVisitor = result.data.getStats.visitorCount;
+          setVisitorCount(currentVisitor);
           setLikeCount(result.data.getStats.likeCount);
+
+          // visitorCountを+1して保存
+          await client.graphql({
+            query: `
+              mutation UpdateStats($input: UpdateStatsInput!) {
+                updateStats(input: $input) {
+                  id
+                  visitorCount
+                  likeCount
+                }
+              }
+            `,
+            variables: {
+              input: {
+                id: 'global-stats',
+                visitorCount: currentVisitor + 1,
+                likeCount: result.data.getStats.likeCount
+              }
+            }
+          });
+
+          // 表示も+1に
+          setVisitorCount(currentVisitor + 1);
         }
       } catch (error) {
-        console.error('Error fetching stats:', error);
+        console.error('Error updating visitor count:', error);
       }
     };
 
-    fetchStats();
+    fetchAndUpdateVisitor();
   }, []);
 
   const handleLike = async () => {
@@ -120,7 +143,7 @@ function Preparation() {
           <div className="preparation-stats">
             <div className="stat-row">
               <span className="stat-label">訪問者数</span>
-              <span className="stat-value">{visitorCount.toLocaleString()}</span>
+              <span className="stat-value">{visitorCount?.toLocaleString() || ''}</span>
             </div>
             <div className="stat-row">
               <span className="stat-label">いいね</span>
@@ -128,7 +151,7 @@ function Preparation() {
                 ref={likeValueRef}
                 className={`stat-value ${isLiked ? 'like-animation' : ''}`}
               >
-                {likeCount.toLocaleString()}
+                {likeCount?.toLocaleString() || ''}
               </span>
             </div>
             <div className="stat-row">
