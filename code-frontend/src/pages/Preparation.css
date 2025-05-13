@@ -1,8 +1,9 @@
 .preparation-container {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #fff;
     font-family: 'Noto Serif JP', serif;
@@ -203,4 +204,12 @@
     100% {
       transform: scale(1);
     }
+  }
+  
+  .preparation-logo {
+    width: 180px;
+    max-width: 60vw;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 2px 8px #0008);
   }

@@ -4,6 +4,8 @@ import { Amplify } from 'aws-amplify';
 import { generateClient } from 'aws-amplify/api';
 import awsconfig from '../aws-exports';
 import './Preparation.css';
+import Header from '../components/Header';
+import logo from '../assets/guiltys-garden-logo.png';
 
 // Amplifyの設定を最初に行う
 Amplify.configure(awsconfig);
@@ -105,61 +107,65 @@ function Preparation() {
   };
 
   return (
-    <div className="preparation-container">
-      <div className="preparation-content">
-        <h1 className="preparation-title">Coming Soon</h1>
-        <div className="preparation-description">
-          より良いサービスを提供するため、現在準備を進めております。<br />
-          もうしばらくお待ちください。
+    <div>
+      <Header hideLinks={true} />
+      <div className="preparation-container">
+        <img src={logo} alt="GUILTY'S GARDEN ロゴ" className="preparation-logo" />
+        <div className="preparation-content">
+          <h1 className="preparation-title">Coming Soon</h1>
+          <div className="preparation-description">
+            より良いサービスを提供するため、現在準備を進めております。<br />
+            もうしばらくお待ちください。
+          </div>
+          <div className="preparation-stats">
+            <div className="stat-row">
+              <span className="stat-label">訪問者数</span>
+              <span className="stat-value">{visitorCount.toLocaleString()}</span>
+            </div>
+            <div className="stat-row">
+              <span className="stat-label">いいね</span>
+              <span 
+                ref={likeValueRef}
+                className={`stat-value ${isLiked ? 'like-animation' : ''}`}
+              >
+                {likeCount.toLocaleString()}
+              </span>
+            </div>
+            <div className="stat-row">
+              <button 
+                className={`like-button ${isLiked ? 'like-animation' : ''}`}
+                onClick={handleLike}
+                aria-label="いいね"
+              >
+                ❤️
+              </button>
+            </div>
+          </div>
+          <div className="preparation-decoration">
+            <div className="decoration-line"></div>
+            <div className="decoration-dot"></div>
+            <div className="decoration-line"></div>
+          </div>
         </div>
-        <div className="preparation-stats">
-          <div className="stat-row">
-            <span className="stat-label">訪問者数</span>
-            <span className="stat-value">{visitorCount.toLocaleString()}</span>
-          </div>
-          <div className="stat-row">
-            <span className="stat-label">いいね</span>
-            <span 
-              ref={likeValueRef}
-              className={`stat-value ${isLiked ? 'like-animation' : ''}`}
-            >
-              {likeCount.toLocaleString()}
-            </span>
-          </div>
-          <div className="stat-row">
-            <button 
-              className={`like-button ${isLiked ? 'like-animation' : ''}`}
-              onClick={handleLike}
-              aria-label="いいね"
+        {/* 飛び散るハート */}
+        <div className="hearts-container">
+          {hearts.map(heart => (
+            <div
+              key={heart.id}
+              className="floating-heart"
+              style={{
+                '--x': `${heart.x}px`,
+                '--y': `${heart.y}px`,
+                '--rotation': `${heart.rotation}deg`,
+                '--scale': heart.scale,
+                '--start-x': `${heart.startX}px`,
+                '--start-y': `${heart.startY}px`
+              }}
             >
               ❤️
-            </button>
-          </div>
+            </div>
+          ))}
         </div>
-        <div className="preparation-decoration">
-          <div className="decoration-line"></div>
-          <div className="decoration-dot"></div>
-          <div className="decoration-line"></div>
-        </div>
-      </div>
-      {/* 飛び散るハート */}
-      <div className="hearts-container">
-        {hearts.map(heart => (
-          <div
-            key={heart.id}
-            className="floating-heart"
-            style={{
-              '--x': `${heart.x}px`,
-              '--y': `${heart.y}px`,
-              '--rotation': `${heart.rotation}deg`,
-              '--scale': heart.scale,
-              '--start-x': `${heart.startX}px`,
-              '--start-y': `${heart.startY}px`
-            }}
-          >
-            ❤️
-          </div>
-        ))}
       </div>
     </div>
   );

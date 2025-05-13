@@ -3,12 +3,13 @@ frontend:
   phases:
     build:
       commands:
+        - cd code-frontend
         - npm install
         - npm run build
   artifacts:
-    baseDirectory: build
+    baseDirectory: code-frontend/build
     files:
       - '**/*'
   cache:
     paths:
-      - node_modules/**/*
+      - code-frontend/node_modules/**/*
