@@ -1,0 +1,15 @@
+version: 1
+frontend:
+  phases:
+    build:
+      commands:
+        - cd code-frontend
+        - npm install
+        - npm run build
+  artifacts:
+    baseDirectory: code-frontend/build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - code-frontend/node_modules/**/*
