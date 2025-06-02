@@ -286,4 +286,99 @@ body, html {
   100% {
     transform: scale(1);
   }
+}
+
+.home-share-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 8em;
+  margin-bottom: 2em;
+  position: absolute;
+  bottom: 2em;
+  left: 0;
+}
+.home-share-label {
+  font-size: 1.08em;
+  color: #eba6a9;
+  font-weight: 900;
+  margin-bottom: 0.7em;
+  letter-spacing: 0.08em;
+}
+.home-share-buttons {
+  display: flex;
+  gap: 1.3em;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em 2em;
+  border: 2px solid #eba6a9;
+  border-radius: 1em;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 20px rgba(235, 166, 169, 0.15);
+}
+.share-btn {
+  width: 3.1em;
+  height: 3.1em;
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.3em;
+  color: #fff;
+}
+.share-btn i {
+  font-size: 1.5em;
+}
+.share-btn.x {
+  background: #000;
+}
+.share-btn.x:hover {
+  background: #333;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.share-btn.line {
+  background: #06C755;
+}
+.share-btn.line:hover {
+  background: #05a346;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(6,199,85,0.2);
+}
+.share-btn.instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+.share-btn.instagram:hover {
+  background: linear-gradient(45deg, #e0852e 0%, #d55c36 25%, #c9233d 50%, #b91f5a 75%, #a7157a 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(220,39,67,0.2);
+}
+/* LINEボタンはPCで非表示、スマホで表示 */
+.share-btn.line {
+  display: none;
+}
+@media (max-width: 767px) {
+  .share-btn.line {
+    display: flex;
+  }
+  .home-share-section {
+    margin-top: 6em;
+    margin-bottom: 1.5em;
+    bottom: 1.5em;
+  }
+  .home-share-buttons {
+    gap: 0.7em;
+    padding: 1em 1.5em;
+  }
+  .share-btn {
+    width: 2.2em;
+    height: 2.2em;
+    font-size: 1em;
+  }
+  .share-btn i {
+    font-size: 1.2em;
+  }
 } 
