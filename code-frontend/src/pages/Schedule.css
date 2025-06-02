@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&family=Balsamiq+Sans:wght@700&display=swap');
+
+.schedule-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #18332a;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.schedule-flower-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.13"><path d="M50 200 Q100 100 200 200 T350 200" stroke="%23eba6a9" stroke-width="8" fill="none"/><circle cx="100" cy="100" r="20" fill="%23eba6a9"/><circle cx="300" cy="300" r="16" fill="%23eba6a9"/><circle cx="200" cy="300" r="10" fill="%23eba6a9"/></g></svg>') repeat;
+  opacity: 0.18;
+}
+
+.schedule-header-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  z-index: 2;
+}
+
+.schedule-cute-area {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 2.5rem 0 0 0;
+}
+
+.schedule-cute-content {
+  font-family: 'Balsamiq Sans', 'Quicksand', 'Nunito', 'Noto Sans JP', sans-serif;
+  color: #eba6a9;
+  font-size: 1.13rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+  background: rgba(255,255,255,0.10);
+  border-radius: 1.8em;
+  padding: 2.2em 1.5em 2.2em 1.5em;
+  box-shadow: 0 2px 24px #eba6a933;
+  max-width: 520px;
+  width: 96vw;
+  margin: 0 auto;
+  position: relative;
+}
+
+.schedule-ribbon-top, .schedule-ribbon-bottom {
+  display: none;
+}
+
+.schedule-cute-deco {
+  display: none;
+}
+
+.schedule-cute-area::before,
+.schedule-cute-area::after {
+  display: none !important;
+}
+
+.schedule-main-message {
+  color: #ffd700;
+  font-size: 1.25em;
+  font-weight: 900;
+  margin-bottom: 1.2em;
+  text-shadow: 0 2px 12px #0008, 0 0 2px #ffd700;
+}
+
+.schedule-sub-message {
+  color: #eba6a9;
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-bottom: 1.2em;
+  text-shadow: 0 2px 8px #0006;
+}
+
+.schedule-text {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 500;
+  margin-bottom: 1.1em;
+  text-shadow: 0 2px 8px #eba6a9cc;
+}
+
+/* カレンダー風・花や葉っぱの装飾（イラスト案） */
+.schedule-letter-area::before {
+  content: '🌸';
+  position: absolute;
+  left: -1.5em;
+  top: -1.5em;
+  font-size: 2.2em;
+  filter: drop-shadow(0 2px 8px #eba6a9cc);
+}
+.schedule-letter-area::after {
+  content: '🌿';
+  position: absolute;
+  right: -1.5em;
+  bottom: -1.5em;
+  font-size: 2.2em;
+  filter: drop-shadow(0 2px 8px #ffd700cc);
+}
+
+@media (max-width: 600px) {
+  .schedule-cute-content {
+    font-size: 0.98rem;
+    padding: 1.2em 0.2em 1.2em 0.2em;
+  }
+  .schedule-main-message {
+    font-size: 1.05em;
+  }
+} 

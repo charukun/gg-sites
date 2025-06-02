@@ -137,8 +137,8 @@ function Preparation() {
         <div className="preparation-content">
           <h1 className="preparation-title">Coming Soon</h1>
           <div className="preparation-description">
-            より良いサービスを提供するため、現在準備を進めております。<br />
-            もうしばらくお待ちください。
+            より良いサービスを提供するため<br />
+            現在準備を進めております。
           </div>
           <div className="preparation-stats">
             <div className="stat-row">

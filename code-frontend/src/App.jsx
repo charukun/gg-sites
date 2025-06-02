@@ -2,21 +2,29 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Osaka from './pages/Osaka';
-import Tokyo from './pages/Tokyo';
-import Preparation from './pages/Preparation';
+import Home from './pages/Home';
+import Therapists from './pages/Therapists';
+import Pricing from './pages/Pricing';
+import Schedule from './pages/Schedule';
+import HowToUse from './pages/HowToUse';
+import Reserve from './pages/Reserve';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div className="app">
-        <Header />
+        <div className="fixed-header-wrapper">
+          <Header />
+        </div>
         <main className="main-content">
           <Routes>
-            <Route path="/" element={<Preparation />} />
-            <Route path="/osaka" element={<Osaka />} />
-            <Route path="/tokyo" element={<Tokyo />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/therapists" element={<Therapists />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/schedule" element={<Schedule />} />
+            <Route path="/howtouse" element={<HowToUse />} />
+            <Route path="/reserve" element={<Reserve />} />
           </Routes>
         </main>
         <Footer />

@@ -1,0 +1,19 @@
+.page-title-brand {
+  font-family: 'Balsamiq Sans', 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-size: 3.4rem;
+  font-weight: 900;
+  color: #eba6a9;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 0.7rem;
+  line-height: 1.1;
+  text-shadow: 0 2px 16px #0008, 0 0 1px #eba6a9, 0 0 2px #eba6a9;
+  transform: scaleX(1.05);
+}
+
+@media (max-width: 900px) {
+  .page-title-brand {
+    font-size: 2.1rem;
+    margin-bottom: 0.5rem;
+  }
+} 

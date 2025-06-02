@@ -1,3 +1,18 @@
+body, .preparation-container, .preparation-content, .preparation-title, .preparation-description, .preparation-stats, .stat-label, .stat-value, .like-button {
+  font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.preparation-container, .preparation-content, .preparation-title, .preparation-description, .preparation-stats, .stat-row, .stat-label, .stat-value, .like-button {
+  border-radius: 32px !important;
+}
+
+.preparation-title, .preparation-description {
+  border-radius: 18px;
+  padding: 0.5em 1em;
+}
+
 .preparation-container {
     min-height: 80vh;
     display: flex;
@@ -6,7 +21,6 @@
     justify-content: center;
     background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #fff;
-    font-family: 'Noto Serif JP', serif;
   }
   
   .preparation-content {
@@ -207,9 +221,9 @@
   }
   
   .preparation-logo {
-    width: 180px;
+    width: 120px;
     max-width: 60vw;
-    margin-top: 40px;
-    margin-bottom: 16px;
+    margin-top: 80px;
+    margin-bottom: 2px;
     filter: drop-shadow(0 2px 8px #0008);
   }

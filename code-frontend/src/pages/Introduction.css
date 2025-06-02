@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+body, .intro-bg, .intro-header, .intro-title, .intro-subtitle, .intro-section, .intro-text, .intro-features, .intro-footer, .intro-cta {
+  font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif !important;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+}
+
+.intro-bg {
+  background: #fff5f5;
+  color: #222;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+  border-radius: 20px;
+}
+
+.intro-header {
+  text-align: center;
+  padding: 4rem 1rem 2rem 1rem;
+}
+
+.intro-title {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.intro-subtitle {
+  font-size: 2.3rem;
+  color: #ff69b4;
+  margin-bottom: 2rem;
+}
+
+.intro-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 2rem 1rem;
+  background: rgba(255,255,255,0.7);
+  border-radius: 32px !important;
+  box-shadow: 0 4px 32px rgba(255, 105, 180, 0.07);
+  transition: box-shadow 0.3s;
+}
+
+.intro-section.reverse {
+  flex-direction: row-reverse;
+}
+
+.intro-image {
+  width: 45%;
+  min-width: 220px;
+  max-width: 400px;
+  border-radius: 32px !important;
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.13);
+  object-fit: cover;
+  opacity: 0.7;
+  transition: transform 0.7s cubic-bezier(.4,2,.6,1), opacity 0.7s;
+  will-change: transform, opacity;
+  background: #fff0f5;
+}
+
+.parallax-image {
+  opacity: 0;
+  transform: translateY(160px);
+  transition: opacity 3.5s cubic-bezier(.22,1,.36,1), transform 3.5s cubic-bezier(.22,1,.36,1);
+  will-change: transform, opacity;
+}
+
+.parallax-image.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-text {
+  width: 50%;
+  min-width: 220px;
+  font-size: 1.2rem;
+  color: #333;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+  background: none;
+  margin: 0;
+  padding: 0.5em 1em;
+  border-radius: 18px;
+}
+
+.intro-text h2 {
+  font-size: 1.5rem;
+  color: #ff69b4;
+  margin-bottom: 0.7rem;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  line-height: 2;
+  color: #333;
+}
+
+.intro-features {
+  max-width: 700px;
+  margin: 4rem auto 2rem auto;
+  text-align: center;
+}
+
+.intro-features h2 {
+  color: #ff69b4;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.intro-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.intro-features li {
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+  color: #222;
+  border-radius: 18px;
+  padding: 0.5em 1em;
+}
+
+.intro-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.intro-cta {
+  display: inline-block;
+  background: linear-gradient(90deg, #ff69b4 0%, #ffb6c1 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 32px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgba(255, 105, 180, 0.15);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.intro-cta:hover {
+  background: linear-gradient(90deg, #ffb6c1 0%, #ff69b4 100%);
+  box-shadow: 0 4px 24px rgba(255, 105, 180, 0.25);
+}
+
+@media (max-width: 900px) {
+  .intro-section, .intro-section.reverse {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0.5rem;
+  }
+  .intro-image, .intro-text {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0;
+    text-align: center;
+  }
+  .intro-section {
+    border-radius: 12px;
+  }
+} 

@@ -1,0 +1,411 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Quicksand:wght@700&family=Montserrat:wght@700&family=Nunito:wght@700&family=Rounded+Mplus+1c:wght@700&family=Noto+Sans+JP:wght@700&display=swap');
+
+.therapists-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #18332a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.therapists-flower-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.13"><path d="M50 200 Q100 100 200 200 T350 200" stroke="%234fa184" stroke-width="8" fill="none"/><circle cx="100" cy="100" r="20" fill="%234fa184"/><circle cx="300" cy="300" r="16" fill="%234fa184"/><circle cx="200" cy="300" r="10" fill="%234fa184"/></g></svg>') repeat;
+  opacity: 0.18;
+}
+.therapists-center {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.therapists-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.2rem;
+  width: 100%;
+  max-width: 700px;
+  justify-content: center;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  box-sizing: border-box;
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+.therapist-card-v {
+  aspect-ratio: 9/16;
+  width: 100%;
+  max-width: 320px;
+  min-width: 180px;
+  background: transparent;
+  border-radius: 0.8em;
+  box-shadow: 0 4px 24px #0002;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+.therapist-img-v {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.8em;
+  background: #f9d9d9;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.therapist-img-gradient {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 55%;
+  border-bottom-left-radius: 0.8em;
+  border-bottom-right-radius: 0.8em;
+  background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.0) 100%);
+  z-index: 2;
+}
+.therapist-info-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 3;
+  width: 100%;
+  padding: 1.2em 1.2em 1.4em 1.2em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  color: #fff;
+  text-shadow: 0 2px 12px #000c;
+}
+.therapist-info-top {
+  width: 100%;
+}
+.therapist-info-bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.therapist-name-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #eba6a9;
+  text-shadow: 0 2px 12px #0002;
+}
+.therapist-age-v {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #c9a66b;
+}
+.therapist-meta-v {
+  font-size: 0.85rem;
+  margin: 0.2em 0 0.7em 0;
+  opacity: 0.98;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.therapist-meta-v .location-icon {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: 0.08em;
+  line-height: 1;
+}
+.therapist-meta-v .location-text {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: 0.08em;
+  line-height: 1;
+}
+.therapist-sns-v {
+  display: flex;
+  gap: 0.6em;
+  margin-top: 0.2em;
+  justify-content: flex-start;
+}
+.therapist-sns-v .sns-link {
+  width: 1.7em;
+  height: 1.7em;
+  font-size: 1em;
+  border-radius: 50%;
+  background: #fff;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 8px #eba6a933;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.therapist-sns-v .sns-link.x { color: #222; }
+.therapist-sns-v .sns-link.instagram { color: #e1306c; }
+.therapist-sns-v .sns-link.tiktok { color: #010101; }
+.therapist-sns-v .sns-link:hover {
+  background: #f5e6e6;
+  color: #681616;
+  border-color: #eba6a9;
+}
+.therapist-sns-v .sns-link:hover .sns-img {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 4px #eba6a9aa);
+  border: 2px solid #eba6a9;
+}
+.therapist-sns-v .sns-img {
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #fff;
+  box-shadow: 0 2px 8px #eba6a933;
+  border: 2px solid #fff;
+  transition: box-shadow 0.2s, border 0.2s, transform 0.18s cubic-bezier(.4,2,.6,1), filter 0.18s;
+  display: block;
+}
+.noimage-illust {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #681616;
+  font-family: inherit;
+  font-weight: 700;
+}
+.noimage-icon {
+  font-size: 3.2rem;
+  margin-bottom: 0.2em;
+  filter: drop-shadow(0 2px 8px #eba6a955);
+}
+.noimage-text {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  letter-spacing: 0.08em;
+}
+.noimage-only {
+  font-size: 1.25rem;
+  color: #bbb;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  opacity: 0.85;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.comingsoon-text {
+  font-size: 1.18rem;
+  color: #eba6a9;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-shadow: 0 2px 12px #fff8, 0 0 2px #eba6a9, 0 0 1px #fff;
+  opacity: 0.92;
+  margin-top: 0.2em;
+  font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+}
+.comingsoon-icon {
+  display: block;
+  margin: 0 auto 0.1em auto;
+  filter: drop-shadow(0 2px 8px #eba6a955);
+  width: 2.8em;
+  height: 2.8em;
+}
+.therapist-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.8em;
+  transition: transform 0.3s ease;
+}
+.therapist-card-v:hover .therapist-image {
+  transform: scale(1.05);
+}
+.therapist-qa-table {
+  margin-top: 1.1em;
+  width: 100%;
+  background: rgba(255,255,255,0.07);
+  border-radius: 0.7em;
+  padding: 0.7em 0.9em 0.7em 0.9em;
+  box-shadow: 0 2px 8px #0001;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.therapist-qa-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.5em;
+  font-size: 0.98em;
+  line-height: 1.6;
+}
+.therapist-qa-q {
+  color: #ffd700;
+  font-weight: 700;
+  min-width: 7em;
+  font-size: 0.98em;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+}
+.therapist-qa-a {
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.98em;
+  letter-spacing: 0.01em;
+  word-break: break-word;
+}
+.therapist-reserve-cute {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #eba6a9;
+  background: rgba(255,255,255,0.13);
+  border-radius: 2em;
+  padding: 0.5em 1.8em;
+  margin: 0.7em 0 1.2em 0;
+  letter-spacing: 0.08em;
+  box-shadow: 0 2px 12px #eba6a933;
+  text-align: center;
+  gap: 0.7em;
+  text-shadow: 0 2px 12px #fff8, 0 0 2px #eba6a9, 0 0 1px #fff;
+}
+.image-indicator {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  gap: 0.5em;
+  z-index: 2;
+}
+.therapist-location-v {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.15em 0 0.1em 0;
+  font-size: 0.7em;
+  color: #fff;
+  text-shadow: 0 1px 6px #0008;
+}
+.location-icon {
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.32em;
+  filter: drop-shadow(0 1px 2px #0006);
+  opacity: 0.85;
+  color: #e0e0e0;
+}
+.location-text {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1em;
+  color: #e0e0e0;
+}
+@media (max-width: 700px) {
+  .therapists-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem 0.7rem;
+    max-width: 100vw;
+    padding-left: 4vw;
+    padding-right: 4vw;
+  }
+  .therapist-card-v {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .therapist-name-row {
+    font-size: 1.05rem;
+  }
+  .therapist-age-v {
+    font-size: 0.8rem;
+  }
+  .therapist-meta-v {
+    font-size: 0.7rem;
+  }
+  .therapist-sns-v .sns-link {
+    width: 1.3em;
+    height: 1.3em;
+    font-size: 0.9em;
+  }
+  .therapist-sns-v .sns-img {
+    width: 1em;
+    height: 1em;
+  }
+  .therapist-qa-table {
+    padding: 0.5em 0.3em 0.5em 0.3em;
+    gap: 0.3em;
+  }
+  .therapist-qa-row {
+    font-size: 0.92em;
+    flex-direction: column;
+    gap: 0.1em;
+  }
+  .therapist-qa-q {
+    min-width: unset;
+    font-size: 0.92em;
+  }
+  .therapist-qa-a {
+    font-size: 0.92em;
+  }
+  .therapist-reserve-cute {
+    font-size: 1rem;
+    padding: 0.4em 1em;
+    margin: 0.5em 0 0.8em 0;
+  }
+}
+.sns-popup {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff0fa;
+  color: #eba6a9;
+  font-weight: 900;
+  font-size: 1.08em;
+  border-radius: 1.5em;
+  box-shadow: 0 2px 12px #eba6a955;
+  padding: 0.7em 1.6em;
+  z-index: 2000;
+  border: 2px solid #eba6a9;
+  text-align: center;
+  animation: popup-fade 1.2s;
+}
+@keyframes popup-fade {
+  0% { opacity: 0; transform: translate(-50%, -60px);}
+  10% { opacity: 1; transform: translate(-50%, -50%);}
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, -40px);}
+}
+.omakase-reserve-btn {
+  background: #ffd700;
+  color: #681616;
+  font-weight: 900;
+  font-size: 1.15em;
+  border: none;
+  border-radius: 2em;
+  padding: 0.7em 2.2em;
+  box-shadow: 0 2px 8px #ffd70055;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 2em;
+}
+.omakase-reserve-btn:hover {
+  background: #eba6a9;
+  color: #fff;
+} 

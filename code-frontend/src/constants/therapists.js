@@ -1,0 +1,98 @@
+import rikiyaImage from '../assets/panel/rikiya_top.jpg';
+import yuuImage from '../assets/panel/yuu_top.jpg';
+import yoruImage from '../assets/panel/yoru_top.png';
+import syouImage from '../assets/panel/syou_top.jpg';
+import nobunagaImage from '../assets/panel/nobunaga.png';
+
+export const therapists = [
+  {
+    id: 'yoru',
+    name: '夜(ヨル)',
+    age: '30代',
+    height: 176,
+    weight: 68,
+    image: yoruImage,
+    location: '大阪',
+    sns: { x: 'https://x.com/GgardenYoru', instagram: '#', tiktok: '#' },
+    qa: {
+      hobby: 'デロデロなキス',
+      holiday: '夜の街を散歩',
+      food: 'おさしみ全般',
+      personality: '優しくて優しい',
+      date: '夜のコンビニや公園をブラブラ',
+      message: '特別な夜を一緒に過ごそ。',
+    },
+  },
+  {
+    id: 'yuu',
+    name: '夕',
+    age: '30代',
+    height: 177,
+    weight: 75,
+    image: yuuImage,
+    location: '大阪',
+    sns: { x: 'https://x.com/GgardenYuu', instagram: '#', tiktok: '#' },
+    qa: {
+      hobby: 'カメラと旅行',
+      holiday: 'おしゃれなカフェでのんびり',
+      food: '和食とチョコレート',
+      personality: '穏やかで聞き上手',
+      date: '静かな公園でピクニック',
+      message: 'あなたの癒しになれたら嬉しいです。',
+    },
+  },
+  {
+    id: 'rikiya',
+    name: 'RIKIYA',
+    age: '20代',
+    height: 171,
+    weight: 78,
+    image: rikiyaImage,
+    location: '大阪',
+    sns: { x: '#', instagram: '#', tiktok: '#' },
+    qa: {
+      hobby: '筋トレとカフェ巡り',
+      holiday: '友達とドライブや映画',
+      food: '焼肉とスイーツ',
+      personality: '明るくて頼れる兄貴肌',
+      date: '夜景の見えるレストランでゆっくり',
+      message: '一緒に楽しい時間を過ごしましょう！',
+    },
+  },
+  {
+    id: 'syou',
+    name: 'ショウ',
+    age: '20代',
+    height: 170,
+    weight: 60,
+    image: syouImage,
+    location: '大阪',
+    sns: { x: '#', instagram: '#', tiktok: '#' },
+    qa: {
+      hobby: 'スポーツ全般',
+      holiday: 'アウトドアでアクティブに',
+      food: 'ラーメンとアイス',
+      personality: '元気でポジティブ',
+      date: '遊園地で思いっきり遊ぶ',
+      message: '一緒に笑顔になろう！',
+    },
+  },
+  {
+    id: 'nobunaga',
+    name: '信長',
+    age: '40代',
+    height: 174,
+    weight: 72,
+    image: nobunagaImage,
+    location: '大阪',
+    sns: { x: '#', instagram: '#', tiktok: '#' },
+    qa: {
+      hobby: '歴史巡りと茶道',
+      holiday: '美術館や神社巡り',
+      food: '和菓子と抹茶',
+      personality: '落ち着いていて頼もしい',
+      date: '和の雰囲気の料亭でしっとり',
+      message: 'あなたに安らぎを届けます。',
+    },
+  },
+]; 

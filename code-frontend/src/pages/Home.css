@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&family=Quicksand:wght@700&family=Montserrat:wght@700&family=Nunito:wght@700&family=Rounded+Mplus+1c:wght@700&family=Noto+Sans+JP:wght@700&display=swap');
+
+body, html {
+  margin: 0 !important;
+  padding: 0;
+  border: none !important;
+  box-sizing: border-box;
+  background: none !important;
+}
+
+.home-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #18332a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.home-center {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.home-title {
+  font-family: 'Balsamiq Sans', 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-size: 4.2rem;
+  font-weight: 900;
+  color: #eba6a9;
+  letter-spacing: 0.03em;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.1;
+  text-shadow: 0 2px 16px #0008, 0 0 1px #eba6a9, 0 0 2px #eba6a9;
+  transform: scaleX(1.05);
+}
+
+.home-btn {
+  display: inline-block;
+  background: #681616;
+  color: #eba6a9;
+  font-family: inherit;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 2.5rem;
+  padding: 0.7em 2.5em;
+  margin-bottom: 2.2rem;
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.home-btn:hover {
+  background: #eba6a9;
+  color: #681616;
+  box-shadow: 0 4px 24px #eba6a955;
+}
+
+.home-heart {
+  font-size: 2.5rem;
+  color: #ffd700;
+  margin-top: 0.5rem;
+  text-align: center;
+  text-shadow: 0 2px 12px #0006;
+}
+
+.home-flower-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.13"><path d="M50 200 Q100 100 200 200 T350 200" stroke="%234fa184" stroke-width="8" fill="none"/><circle cx="100" cy="100" r="20" fill="%234fa184"/><circle cx="300" cy="300" r="16" fill="%234fa184"/><circle cx="200" cy="300" r="10" fill="%234fa184"/></g></svg>') repeat;
+  opacity: 0.18;
+}
+
+.home-subcatch {
+  font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #eba6a9;
+  text-align: center;
+  margin-bottom: 2.2rem;
+  letter-spacing: 0.11em;
+  border-radius: 1.5em;
+  background: none;
+  padding: 0.2em 1.2em;
+  text-shadow: 0 2px 12px #0004;
+}
+
+@media (max-width: 600px) {
+  .home-title {
+    font-size: 2.5rem;
+  }
+  .home-btn {
+    font-size: 1.1rem;
+    padding: 0.7em 1.5em;
+  }
+  .home-heart {
+    font-size: 1.5rem;
+  }
+  .home-subcatch {
+    font-size: 1.1rem;
+    padding: 0.2em 0.5em;
+  }
+}
+
+.age-modal-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(24, 51, 42, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.age-modal {
+  background: #fff;
+  color: #681616;
+  border-radius: 2.5em;
+  box-shadow: 0 8px 32px #0005;
+  padding: 2.5em 2em 2em 2em;
+  min-width: 320px;
+  max-width: 90vw;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.age-modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  margin-bottom: 1.2em;
+  color: #eba6a9;
+  font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+}
+.age-modal-text {
+  font-size: 1.1rem;
+  margin-bottom: 2em;
+  color: #681616;
+  line-height: 1.7;
+}
+.age-modal-yes {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #fff;
+  background: #681616;
+  border: none;
+  border-radius: 2em;
+  padding: 0.7em 2.5em;
+  letter-spacing: 0.13em;
+  box-shadow: 0 2px 12px #68161633;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.age-modal-yes:hover {
+  background: #eba6a9;
+  color: #681616;
+}
+
+.home-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 2rem 0;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-label {
+  color: #c9a66b;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  min-width: 80px;
+  text-align: right;
+}
+
+.stat-value {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: left;
+}
+
+.home-heart.like-button {
+  font-size: 2.5rem;
+  color: #ffd700;
+  margin-top: 2rem;
+  text-align: center;
+  text-shadow: 0 2px 12px #0006;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.2s;
+  display: block;
+}
+
+.home-heart.like-button:hover {
+  transform: scale(1.2);
+}
+
+.home-heart.like-button:active {
+  transform: scale(0.9);
+}
+
+.home-heart.like-button.like-animation {
+  animation: heart-beat 1s ease-out;
+}
+
+.hearts-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.floating-heart {
+  position: fixed;
+  top: var(--start-y);
+  left: var(--start-x);
+  font-size: 1.5rem;
+  transform: translate(-50%, -50%) rotate(var(--rotation)) scale(var(--scale));
+  animation: float-heart 2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes float-heart {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--rotation)) scale(var(--scale));
+    opacity: 1;
+  }
+  100% {
+    transform: translate(
+      calc(-50% + var(--x)),
+      calc(-50% + var(--y))
+    ) rotate(var(--rotation)) scale(var(--scale));
+    opacity: 0;
+  }
+}
+
+.stat-value.like-animation {
+  animation: number-pop 1s ease-out;
+}
+
+.like-button.like-animation {
+  animation: heart-beat 1s ease-out;
+}
+
+@keyframes number-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    color: #ff6b6b;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+} 
