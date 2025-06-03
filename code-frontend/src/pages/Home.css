@@ -318,11 +318,9 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8em;
+  margin-top: 3em;
   margin-bottom: 2em;
-  position: absolute;
-  bottom: 2em;
-  left: 0;
+  position: static;
 }
 .home-share-label {
   font-size: 0.9em;
@@ -391,9 +389,9 @@ body, html {
     display: flex;
   }
   .home-share-section {
-    margin-top: 6em;
+    margin-top: 2.5em;
     margin-bottom: 1.5em;
-    bottom: 1.5em;
+    position: static;
   }
   .home-share-buttons {
     gap: 0.7em;
