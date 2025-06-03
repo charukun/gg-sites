@@ -42,10 +42,10 @@ export default function Reserve() {
         <meta property="og:title" content="ご予約 | 女性用風俗 GUILTY'S GARDEN大阪" />
         <meta property="og:description" content="大阪の女性用風俗『GUILTY'S GARDEN』のご予約ページ。LINEで簡単予約、女性専用・高級性感マッサージ。" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gg-garden.com/reserve" />
-        <meta property="og:image" content="https://gg-garden.com/ogp.png" />
+        <meta property="og:url" content="https://guiltys-garden.com/reserve" />
+        <meta property="og:image" content="https://guiltys-garden.com/ogp.png" />
         <meta property="og:site_name" content="GUILTY'S GARDEN" />
-        <link rel="canonical" href="https://gg-garden.com/reserve" />
+        <link rel="canonical" href="https://guiltys-garden.com/reserve" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -55,13 +55,13 @@ export default function Reserve() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "ホーム",
-                "item": "https://gg-garden.com/"
+                "item": "https://guiltys-garden.com/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "ご予約",
-                "item": "https://gg-garden.com/reserve"
+                "item": "https://guiltys-garden.com/reserve"
               }
             ]
           }

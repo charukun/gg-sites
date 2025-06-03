@@ -118,22 +118,22 @@ export default function Home() {
         <meta property="og:title" content="女性用風俗 GUILTY'S GARDEN（ギルティーズガーデン）大阪" />
         <meta property="og:description" content="大阪の女性用風俗『GUILTY'S GARDEN』で、癒しと快感、非日常の特別な体験を。女性専用・完全予約制の高級性感マッサージ店。" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gg-garden.com/" />
-        <meta property="og:image" content="https://gg-garden.com/ogp.png" />
+        <meta property="og:url" content="https://guiltys-garden.com/" />
+        <meta property="og:image" content="https://guiltys-garden.com/ogp.png" />
         <meta property="og:site_name" content="GUILTY'S GARDEN" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="女性用風俗 GUILTY'S GARDEN（ギルティーズガーデン）大阪" />
         <meta name="twitter:description" content="大阪の女性用風俗『GUILTY'S GARDEN』で、癒しと快感、非日常の特別な体験を。女性専用・完全予約制の高級性感マッサージ店。" />
-        <meta name="twitter:image" content="https://gg-garden.com/ogp.png" />
-        <link rel="canonical" href="https://gg-garden.com/" />
+        <meta name="twitter:image" content="https://guiltys-garden.com/ogp.png" />
+        <link rel="canonical" href="https://guiltys-garden.com/" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "GUILTY'S GARDEN（ギルティーズガーデン）",
             "description": "大阪の女性用風俗・女性専用高級性感マッサージ店。癒しと快感、非日常の特別な体験をあなたに。",
-            "image": "https://gg-garden.com/ogp.png",
-            "url": "https://gg-garden.com/",
+            "image": "https://guiltys-garden.com/ogp.png",
+            "url": "https://guiltys-garden.com/",
             "address": {
               "@type": "PostalAddress",
               "addressLocality": "大阪市",
@@ -199,7 +199,7 @@ export default function Home() {
           <div className="home-share-section">
             <div className="home-share-buttons">
               <a
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("女性用風俗 GUILTY'S GARDEN大阪｜女性専用・高級性感マッサージ")}&url=https://gg-garden.com/`}
+                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("女性用風俗 GUILTY'S GARDEN大阪｜女性専用・高級性感マッサージ")}&url=https://guiltys-garden.com/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="share-btn x"
@@ -208,22 +208,13 @@ export default function Home() {
                 <i className="fa-brands fa-x-twitter"></i>
               </a>
               <a
-                href={`https://social-plugins.line.me/lineit/share?url=https://gg-garden.com/`}
+                href={`https://social-plugins.line.me/lineit/share?url=https://guiltys-garden.com/`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="share-btn line"
                 aria-label="LINEでシェア"
               >
                 <i className="fa-brands fa-line"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/guiltys.garden/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="share-btn instagram"
-                aria-label="Instagram公式"
-              >
-                <i className="fa-brands fa-instagram"></i>
               </a>
             </div>
             <div className="home-share-label">このページをシェア</div>

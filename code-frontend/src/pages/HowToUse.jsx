@@ -64,10 +64,10 @@ export default function HowToUse() {
         <meta property="og:title" content="ご利用方法 | 女性用風俗 GUILTY'S GARDEN大阪" />
         <meta property="og:description" content="大阪の女性用風俗『GUILTY'S GARDEN』のご利用方法・予約の流れ。女性専用・高級性感マッサージの安心サポート。" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gg-garden.com/howtouse" />
-        <meta property="og:image" content="https://gg-garden.com/ogp.png" />
+        <meta property="og:url" content="https://guiltys-garden.com/howtouse" />
+        <meta property="og:image" content="https://guiltys-garden.com/ogp.png" />
         <meta property="og:site_name" content="GUILTY'S GARDEN" />
-        <link rel="canonical" href="https://gg-garden.com/howtouse" />
+        <link rel="canonical" href="https://guiltys-garden.com/howtouse" />
         <script type="application/ld+json">{`
           {
             "@context": "https://schema.org",
@@ -77,13 +77,13 @@ export default function HowToUse() {
                 "@type": "ListItem",
                 "position": 1,
                 "name": "ホーム",
-                "item": "https://gg-garden.com/"
+                "item": "https://guiltys-garden.com/"
               },
               {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "ご利用方法",
-                "item": "https://gg-garden.com/howtouse"
+                "item": "https://guiltys-garden.com/howtouse"
               }
             ]
           }
