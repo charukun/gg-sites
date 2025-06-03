@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const LINE_ID = '@330esodg';
 const LINE_URL = `https://line.me/R/ti/p/${LINE_ID.replace('@', '')}`;
@@ -11,12 +12,7 @@ export default function Reserve() {
   const therapist = params.get('name') || '';
 
   // テンプレート
-  const template = `【GUILTY'S GARDEN 予約希望】
-① 希望セラピスト名：${therapist}
-② 希望日・希望時間帯・希望場所：
-③ お客様のお名前：
-④ お客様の連絡先
-（電話番号 or Xアカウント）：https://x.com/GuiltysGarden`;
+  const template = `【GUILTY'S GARDEN 予約希望】\n① 希望セラピスト名：${therapist}\n② 希望日：\n③ 希望時間帯：\n④ 希望場所：\n⑤ お客様のお名前：\n⑥ お客様の連絡先（電話番号 or Xアカウント）：\nhttps://x.com/GuiltysGarden\n⑦ その他候補日時(あれば)：`;
 
   const [copied, setCopied] = useState(false);
 
@@ -40,18 +36,45 @@ export default function Reserve() {
 
   return (
     <div className="reserve-bg">
+      <Helmet>
+        <title>ご予約 | 女性用風俗 GUILTY'S GARDEN（ギルティーズガーデン）大阪</title>
+        <meta name="description" content="大阪の女性用風俗『GUILTY'S GARDEN』のご予約ページ。LINEで簡単予約、女性専用・高級性感マッサージ。" />
+        <meta property="og:title" content="ご予約 | 女性用風俗 GUILTY'S GARDEN大阪" />
+        <meta property="og:description" content="大阪の女性用風俗『GUILTY'S GARDEN』のご予約ページ。LINEで簡単予約、女性専用・高級性感マッサージ。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gg-garden.com/reserve" />
+        <meta property="og:image" content="https://gg-garden.com/ogp.png" />
+        <meta property="og:site_name" content="GUILTY'S GARDEN" />
+        <link rel="canonical" href="https://gg-garden.com/reserve" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://gg-garden.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "ご予約",
+                "item": "https://gg-garden.com/reserve"
+              }
+            ]
+          }
+        `}</script>
+      </Helmet>
       <div className="reserve-center">
         <h2 className="reserve-title">LINEで予約</h2>
+        <div className="reserve-cute-step">簡単１ステップ！</div>
         <div className="reserve-section">
           <div className="reserve-template-example">
             <div className="reserve-example-title">【記載例】</div>
             <pre className="reserve-example-text">
-{`【GUILTY'S GARDEN 予約希望】
-① 希望セラピスト名：ギルティくん
-② 希望日・希望時間帯・希望場所：6/15 18:30〜21:30 梅田
-③ お客様のお名前：ガーデンちゃん
-④ お客様の連絡先
-（電話番号 or Xアカウント）：https://x.com/GuiltysGarden`}
+{`【GUILTY'S GARDEN 予約希望】\n① 希望セラピスト名：ギルティくん\n② 希望日：6/15\n③ 希望時間帯：18:30〜21:30\n④ 希望場所：梅田\n⑤ お客様のお名前：ガーデンちゃん\n⑥ お客様の連絡先（電話番号 or Xアカウント）：\nhttps://x.com/GuiltysGarden\n⑦ その他候補日時(あれば)：`}
             </pre>
           </div>
           <textarea
@@ -89,7 +112,7 @@ export default function Reserve() {
           <div className="reserve-info-block">
             <span className="reserve-info-title">📩返信について</span>
             <span className="reserve-info-text">
-              メッセージを確認次第、公式LINEの受付担当から返信いたします。
+              メッセージを確認次第、公式LINEの受付担当からLINE宛に返信いたします。
             </span>
           </div>
           <div className="reserve-info-block">
@@ -102,7 +125,7 @@ export default function Reserve() {
             <span className="reserve-info-title">⚠️お客様の連絡先について</span>
             <span className="reserve-info-text">
               本公式LINEは予約申込専用となっております。<br />
-              ご記載いただいたお客様のご連絡先に、セラピストから直接ご連絡いたしますので、<br />
+              ご記載いただいたお客様のご連絡先に、セラピストから直接ご連絡いたしますので、お間違えのないようご注意ください。<br />
               待ち合わせ等の詳細はその際にお決めいただくようお願いいたします。
             </span>
           </div>
@@ -269,6 +292,30 @@ export default function Reserve() {
           font-size: 0.98em;
           margin-bottom: 0.7em;
           text-align: left;
+        }
+        .reserve-cute-step {
+          font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
+          font-size: 1.1em;
+          color: #fff;
+          background: #eba6a9;
+          display: inline-block;
+          padding: 0.3em 1.2em;
+          border-radius: 1.5em;
+          margin-bottom: 1.2em;
+          margin-top: -0.7em;
+          letter-spacing: 0.13em;
+          box-shadow: 0 2px 12px #eba6a955;
+          position: relative;
+        }
+        .reserve-cute-step::before {
+          content: '❤';
+          color: #ffd700;
+          margin-right: 0.5em;
+        }
+        .reserve-cute-step::after {
+          content: '❤';
+          color: #ffd700;
+          margin-left: 0.5em;
         }
         @media (max-width: 600px) {
           .reserve-center {

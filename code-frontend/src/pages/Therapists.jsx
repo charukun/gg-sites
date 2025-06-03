@@ -5,6 +5,7 @@ import './Therapists.css';
 import { therapists } from '../constants/therapists';
 import { qaList } from '../constants/qaList';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 export default function Therapists() {
   const [selectedTherapist, setSelectedTherapist] = useState(null);
@@ -30,6 +31,37 @@ export default function Therapists() {
 
   return (
     <div className="therapists-bg">
+      <Helmet>
+        <title>セラピスト一覧 | 女性用風俗 GUILTY'S GARDEN（ギルティーズガーデン）大阪</title>
+        <meta name="description" content="大阪の女性用風俗『GUILTY'S GARDEN』在籍セラピスト一覧。女性専用・高級性感マッサージで癒しと快感を体験。" />
+        <meta property="og:title" content="セラピスト一覧 | 女性用風俗 GUILTY'S GARDEN大阪" />
+        <meta property="og:description" content="大阪の女性用風俗『GUILTY'S GARDEN』在籍セラピスト一覧。女性専用・高級性感マッサージで癒しと快感を体験。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gg-garden.com/therapists" />
+        <meta property="og:image" content="https://gg-garden.com/ogp.png" />
+        <meta property="og:site_name" content="GUILTY'S GARDEN" />
+        <link rel="canonical" href="https://gg-garden.com/therapists" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://gg-garden.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "セラピスト一覧",
+                "item": "https://gg-garden.com/therapists"
+              }
+            ]
+          }
+        `}</script>
+      </Helmet>
       <div className="therapists-flower-bg"></div>
       <div className="therapists-center">
         <PageBrandTitle />
@@ -40,7 +72,7 @@ export default function Therapists() {
             <div className="therapist-card-v" key={i} onClick={() => handleTherapistClick(t)}>
               <div className="therapist-img-v">
                 {t.image ? (
-                  <img src={t.image} alt={t.name} className="therapist-image" />
+                  <img src={t.image} alt={`女性用風俗GUILTY'S GARDEN大阪 セラピスト${t.name}の写真`} className="therapist-image" />
                 ) : (
                   <div className="noimage-illust">
                     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="comingsoon-icon">
@@ -72,7 +104,7 @@ export default function Therapists() {
                     {t.sns.x && t.sns.x !== '#' ? (
                       <a
                         href={t.sns.x}
-                        className="sns-link x"
+                        className="share-btn x"
                         aria-label="X"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -80,18 +112,18 @@ export default function Therapists() {
                         onMouseDown={e => e.stopPropagation()}
                         onTouchStart={e => e.stopPropagation()}
                       >
-                        <img src="/sns_x.png" alt="X" className="sns-img" />
+                        <i className="fa-brands fa-x-twitter"></i>
                       </a>
                     ) : (
                       <button
                         type="button"
-                        className="sns-link x"
+                        className="share-btn x"
                         aria-label="X"
                         onClick={handleXClick}
                         onMouseDown={e => e.stopPropagation()}
                         onTouchStart={e => e.stopPropagation()}
                       >
-                        <img src="/sns_x.png" alt="X" className="sns-img" />
+                        <i className="fa-brands fa-x-twitter"></i>
                       </button>
                     )}
                     {showInstagram && (

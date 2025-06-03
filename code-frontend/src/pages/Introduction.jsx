@@ -62,7 +62,7 @@ export default function Introduction() {
         <section className={`intro-section${i % 2 === 1 ? ' reverse' : ''}${block.highlight ? ' highlight' : ''}`} key={i}>
           <img
             src={block.image}
-            alt={`イメージ${i + 1}`}
+            alt={`女性用風俗GUILTY'S GARDEN大阪 イメージ画像${i + 1}`}
             className="intro-image parallax-image"
             ref={el => (imageRefs.current[i] = el)}
             loading="lazy"

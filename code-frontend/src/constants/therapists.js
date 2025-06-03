@@ -12,7 +12,7 @@ export const therapists = [
     height: 176,
     weight: 68,
     image: yoruImage,
-    location: '大阪',
+    location: '大阪・神戸',
     sns: { x: 'https://x.com/GgardenYoru', instagram: '#', tiktok: '#' },
     qa: {
       hobby: 'デロデロなキス',
@@ -30,7 +30,7 @@ export const therapists = [
     height: 177,
     weight: 75,
     image: yuuImage,
-    location: '大阪',
+    location: '大阪・神戸',
     sns: { x: 'https://x.com/GgardenYuu', instagram: '#', tiktok: '#' },
     qa: {
       hobby: 'カメラと旅行',

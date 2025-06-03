@@ -1,10 +1,42 @@
 import React from 'react';
 import PageBrandTitle from '../components/PageBrandTitle';
 import './Pricing.css';
+import { Helmet } from 'react-helmet-async';
 
 export default function Pricing() {
   return (
     <div className="pricing-bg">
+      <Helmet>
+        <title>料金システム | 女性用風俗 GUILTY'S GARDEN（ギルティーズガーデン）大阪</title>
+        <meta name="description" content="大阪の女性用風俗『GUILTY'S GARDEN』の料金システム。明朗会計・高級性感マッサージの安心価格。" />
+        <meta property="og:title" content="料金システム | 女性用風俗 GUILTY'S GARDEN大阪" />
+        <meta property="og:description" content="大阪の女性用風俗『GUILTY'S GARDEN』の料金システム。明朗会計・高級性感マッサージの安心価格。" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://gg-garden.com/pricing" />
+        <meta property="og:image" content="https://gg-garden.com/ogp.png" />
+        <meta property="og:site_name" content="GUILTY'S GARDEN" />
+        <link rel="canonical" href="https://gg-garden.com/pricing" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://gg-garden.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "料金システム",
+                "item": "https://gg-garden.com/pricing"
+              }
+            ]
+          }
+        `}</script>
+      </Helmet>
       <div className="pricing-flower-bg"></div>
       <div className="pricing-header-area">
         <PageBrandTitle />

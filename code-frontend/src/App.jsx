@@ -8,28 +8,33 @@ import Pricing from './pages/Pricing';
 import Schedule from './pages/Schedule';
 import HowToUse from './pages/HowToUse';
 import Reserve from './pages/Reserve';
+import NotFound from './pages/NotFound';
+import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="app">
-        <div className="fixed-header-wrapper">
-          <Header />
+    <HelmetProvider>
+      <Router>
+        <div className="app">
+          <div className="fixed-header-wrapper">
+            <Header />
+          </div>
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/therapists" element={<Therapists />} />
+              <Route path="/pricing" element={<Pricing />} />
+              <Route path="/schedule" element={<Schedule />} />
+              <Route path="/howtouse" element={<HowToUse />} />
+              <Route path="/reserve" element={<Reserve />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
         </div>
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/therapists" element={<Therapists />} />
-            <Route path="/pricing" element={<Pricing />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/howtouse" element={<HowToUse />} />
-            <Route path="/reserve" element={<Reserve />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+      </Router>
+    </HelmetProvider>
   );
 }
 

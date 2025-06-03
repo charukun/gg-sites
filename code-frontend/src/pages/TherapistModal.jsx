@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './TherapistModal.css';
 import { useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const TherapistModal = ({ therapist, onClose, qaList }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -83,6 +84,47 @@ const TherapistModal = ({ therapist, onClose, qaList }) => {
       onMouseDown={handleOverlayMouseDown}
       onTouchStart={handleOverlayMouseDown}
     >
+      <Helmet>
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "${therapist.name}",
+            "description": "女性用風俗GUILTY'S GARDEN大阪のセラピスト${therapist.name}。${therapist.age}、身長${therapist.height}cm、体重${therapist.weight}kg。高級性感マッサージで癒しと快感を提供。",
+            "image": "${therapist.image}",
+            "height": "${therapist.height} cm",
+            "weight": "${therapist.weight} kg",
+            "affiliation": "GUILTY'S GARDEN（ギルティーズガーデン）",
+            "url": "https://gg-garden.com/therapists"
+          }
+        `}</script>
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "ホーム",
+                "item": "https://gg-garden.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "セラピスト一覧",
+                "item": "https://gg-garden.com/therapists"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "${therapist.name}",
+                "item": "https://gg-garden.com/therapists#${therapist.id}"
+              }
+            ]
+          }
+        `}</script>
+      </Helmet>
       <div
         className={`modal-content${show ? ' show' : ''}`}
         style={{ transformOrigin: origin }}
@@ -98,7 +140,7 @@ const TherapistModal = ({ therapist, onClose, qaList }) => {
             style={{ cursor: 'grab' }}
           >
             {images[currentImageIndex] ? (
-              <img src={images[currentImageIndex]} alt={therapist.name} className="therapist-image" />
+              <img src={images[currentImageIndex]} alt={`女性用風俗GUILTY'S GARDEN大阪 セラピスト${therapist.name}の写真`} className="therapist-image" />
             ) : (
               <div className="noimage-illust">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="comingsoon-icon">
@@ -130,21 +172,21 @@ const TherapistModal = ({ therapist, onClose, qaList }) => {
                 {therapist.sns.x && therapist.sns.x !== '#' ? (
                   <a
                     href={therapist.sns.x}
-                    className="sns-link x"
+                    className="share-btn x"
                     aria-label="X"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img src="/sns_x.png" alt="X" className="sns-img" />
+                    <i className="fa-brands fa-x-twitter"></i>
                   </a>
                 ) : (
                   <button
                     type="button"
-                    className="sns-link x"
+                    className="share-btn x"
                     aria-label="X"
                     onClick={handleXClick}
                   >
-                    <img src="/sns_x.png" alt="X" className="sns-img" />
+                    <i className="fa-brands fa-x-twitter"></i>
                   </button>
                 )}
                 {showInstagram && (
