@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-const LINE_ID = '@330esodg';
-const LINE_URL = `https://line.me/R/ti/p/${LINE_ID.replace('@', '')}`;
+const LINE_ID = '330esodg';
+const LINE_URL = `https://line.me/R/ti/p/${LINE_ID}`;
 
 export default function Reserve() {
   const location = useLocation();
@@ -12,7 +12,7 @@ export default function Reserve() {
   const therapist = params.get('name') || '';
 
   // テンプレート
-  const template = `【GUILTY'S GARDEN 予約希望】\n① 希望セラピスト名：${therapist}\n② 希望日：\n③ 希望時間帯：\n④ 希望場所：\n⑤ お客様のお名前：\n⑥ お客様の連絡先（電話番号 or Xアカウント）：\nhttps://x.com/GuiltysGarden\n⑦ その他候補日時(あれば)：`;
+  const template = `【GUILTY'S GARDEN 予約希望】\n① 希望セラピスト名　　：${therapist}\n② 希望日　　　　　　　：\n③ 希望時間帯　　　　　：\n④ 希望場所　　　　　　：\n⑤ お客様のお名前　　　：\n⑥ お客様の連絡先（電話番号 or Xアカウント）：\n\n⑦ その他候補日時(あれば)：`;
 
   const [copied, setCopied] = useState(false);
 
@@ -74,13 +74,23 @@ export default function Reserve() {
           <div className="reserve-template-example">
             <div className="reserve-example-title">【記載例】</div>
             <pre className="reserve-example-text">
-{`【GUILTY'S GARDEN 予約希望】\n① 希望セラピスト名：ギルティくん\n② 希望日：6/15\n③ 希望時間帯：18:30〜21:30\n④ 希望場所：梅田\n⑤ お客様のお名前：ガーデンちゃん\n⑥ お客様の連絡先（電話番号 or Xアカウント）：\nhttps://x.com/GuiltysGarden\n⑦ その他候補日時(あれば)：`}
+{`【GUILTY'S GARDEN 予約希望】
+① 希望セラピスト名　　：ギルティくん
+② 希望日　　　　　　　：6/15
+③ 希望時間帯　　　　　：18:30〜21:30
+④ 希望場所　　　　　　：梅田
+⑤ お客様のお名前　　　：ガーデンちゃん
+⑥ お客様の連絡先（電話番号 or Xアカウント）：
+　https://x.com/GuiltysGarden
+⑦ その他候補日時(あれば)：
+　6/16,17の同じ時間でも大丈夫です`}
             </pre>
           </div>
           <textarea
             value={template}
             readOnly
             className="reserve-template"
+            style={{ display: 'none' }}
           />
           <div className="reserve-template-desc">
             上記テンプレートをコピーして、必要な情報を書き加えてからLINE公式アカウントにメッセージを送ってください。
@@ -110,15 +120,9 @@ export default function Reserve() {
         </div>
         <div className="reserve-section reserve-info">
           <div className="reserve-info-block">
-            <span className="reserve-info-title">📩返信について</span>
+            <span className="reserve-info-title">📩友達追加について</span>
             <span className="reserve-info-text">
-              メッセージを確認次第、公式LINEの受付担当からLINE宛に返信いたします。
-            </span>
-          </div>
-          <div className="reserve-info-block">
-            <span className="reserve-info-title">🔑お客様の個人情報について</span>
-            <span className="reserve-info-text">
-              ご記載いただいた個人情報は外部に漏れることはありませんのでご安心ください。
+              予約するにあたりLINEの友達追加をしていただく必要がありますが、公式LINEから予約関連以外の宣伝などのメッセージを送ることは一切ございませんのでご安心ください。
             </span>
           </div>
           <div className="reserve-info-block">
@@ -127,6 +131,12 @@ export default function Reserve() {
               本公式LINEは予約申込専用となっております。<br />
               ご記載いただいたお客様のご連絡先に、セラピストから直接ご連絡いたしますので、お間違えのないようご注意ください。<br />
               待ち合わせ等の詳細はその際にお決めいただくようお願いいたします。
+            </span>
+          </div>
+          <div className="reserve-info-block">
+            <span className="reserve-info-title">🔑お客様の個人情報について</span>
+            <span className="reserve-info-text">
+              ご記載いただいた個人情報は外部に漏れることはありませんのでご安心ください。
             </span>
           </div>
         </div>
@@ -150,9 +160,6 @@ export default function Reserve() {
           width: 100%;
           max-width: 420px;
           margin: 2em auto;
-          background: rgba(255,255,255,0.07);
-          border-radius: 1.5em;
-          box-shadow: 0 4px 32px #eba6a955, 0 0 0 8px #fff3;
           padding: 2.2em 1.2em 2.5em 1.2em;
           color: #eba6a9;
           display: flex;
