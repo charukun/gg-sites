@@ -9,6 +9,7 @@ import Schedule from './pages/Schedule';
 import HowToUse from './pages/HowToUse';
 import Reserve from './pages/Reserve';
 import NotFound from './pages/NotFound';
+import Recruit from './pages/Recruit';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/schedule" element={<Schedule />} />
               <Route path="/howtouse" element={<HowToUse />} />
               <Route path="/reserve" element={<Reserve />} />
+              <Route path="/recruit" element={<Recruit />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
