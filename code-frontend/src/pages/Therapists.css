@@ -109,19 +109,21 @@
   color: #c9a66b;
 }
 .therapist-meta-v {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   margin: 0.2em 0 0.7em 0;
   opacity: 0.98;
   color: #fff;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 .therapist-meta-v .location-icon {
-  display: inline-block;
-  vertical-align: middle;
-  position: relative;
-  top: 0.08em;
-  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.8em;
+  flex-shrink: 0;
+  width: 0.9em;
+  height: 0.9em;
 }
 .therapist-meta-v .location-text {
   display: inline-block;
@@ -129,6 +131,7 @@
   position: relative;
   top: 0.08em;
   line-height: 1;
+  margin-left: 0.22em;
 }
 .therapist-sns-v {
   display: flex;
@@ -375,6 +378,14 @@
     font-size: 1rem;
     padding: 0.4em 1em;
     margin: 0.5em 0 0.8em 0;
+  }
+  .therapist-meta-v .location-icon {
+    margin-left: 0.6em;
+    width: 0.85em;
+    height: 0.85em;
+  }
+  .therapist-meta-v .location-text {
+    margin-left: 0.18em;
   }
 }
 .sns-popup {

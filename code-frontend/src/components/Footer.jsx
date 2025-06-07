@@ -4,9 +4,9 @@ function Footer() {
   return (
     <footer className="footer">
       <a
-        href="/admin"
+        href="/mypage/login"
         style={{color:'#FFD700',marginRight:'0.5em',fontSize:'1.2em',textDecoration:'none',cursor:'pointer',opacity:0.85}}
-        aria-label="管理用ページへの隠しリンク"
+        aria-label="ログインページへの隠しリンク"
       >
         ♥
       </a>

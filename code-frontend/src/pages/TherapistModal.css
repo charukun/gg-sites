@@ -10,17 +10,17 @@
   justify-content: center;
   z-index: 1000;
   backdrop-filter: blur(4px);
-  padding-top: 64px;
+  padding-top: 32px;
   box-sizing: border-box;
 }
 
 .modal-content {
   background: #18332a;
   border-radius: 1.5em;
-  padding: 1.2em 0.7em 1.5em 0.7em;
-  max-width: 420px;
+  padding: 0.8em 0.7em 1em 0.7em;
+  max-width: 360px;
   width: 96vw;
-  max-height: 88vh;
+  max-height: 65vh;
   min-height: unset;
   box-sizing: border-box;
   box-shadow: 0 4px 32px #eba6a955, 0 0 0 8px #fff3;
@@ -30,12 +30,7 @@
   align-items: center;
   overflow-y: auto;
   overflow-x: hidden;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
+  margin: 0 auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -75,15 +70,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.1em;
+  gap: 0.4em;
   width: 100%;
 }
 
 .modal-image-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/4;
-  margin-bottom: 1.5em;
+  aspect-ratio: 5/6;
+  margin-bottom: 0.6em;
   border-radius: 0.8em;
   overflow: hidden;
   background: #f9d9d9;
@@ -166,20 +161,20 @@
   display: flex;
   align-items: center;
   gap: 0.5em;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 900;
   color: #eba6a9;
   text-shadow: 0 2px 12px #0002;
 }
 
 .therapist-age-v {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #c9a66b;
 }
 
 .therapist-meta-v {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #681616;
   opacity: 0.98;
   margin-bottom: 0.2em;
@@ -247,64 +242,46 @@
   border: 2px solid #ffd700;
 }
 .therapist-qa-table {
-  margin: 1.1em 0 0.5em 0;
+  margin: 0.4em 0 0.2em 0;
   width: 100%;
-  background: rgba(255,255,255,0.13);
+  background: #fff4;
   border-radius: 0.7em;
-  padding: 0.7em 0.9em 0.7em 0.9em;
-  box-shadow: 0 2px 8px #eba6a933;
+  padding: 0.5em 0.4em;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
+  gap: 0.25em;
 }
 .therapist-qa-row {
   display: flex;
-  flex-direction: column !important;
-  align-items: flex-start;
+  flex-direction: column;
   gap: 0.1em;
-  font-size: 0.98em;
-  line-height: 1.6;
-  width: 100%;
+  font-size: 0.8em;
 }
 .therapist-qa-q {
-  color: #eba6a9;
+  min-width: 2.5em;
   font-weight: 700;
-  font-size: 0.98em;
-  letter-spacing: 0.03em;
-  white-space: normal;
-  margin-bottom: 0.1em;
+  color: #eba6a9;
+  font-size: 0.9em;
 }
 .therapist-qa-a {
-  color: #fff;
-  font-weight: 500;
-  font-size: 0.98em;
-  letter-spacing: 0.01em;
-  word-break: break-word;
-  width: 100%;
+  color: #681616;
+  font-size: 0.9em;
 }
 .modal-buttons {
   display: flex;
-  gap: 1.2em;
-  justify-content: center;
-  margin-top: 1.2em;
+  gap: 0.5em;
+  margin-top: 0.4em;
   width: 100%;
-  flex-wrap: nowrap;
+  padding: 0 0.2em;
 }
 .close-button, .reserve-button {
-  background: #eba6a9;
-  color: #fff;
-  font-size: 1.1em;
-  font-weight: 700;
-  border: none;
+  flex: 1;
+  padding: 0.4em 0;
   border-radius: 2em;
-  padding: 0.7em 1.2em;
+  font-size: 0.85em;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px #eba6a933;
-  width: auto;
-  min-width: 80px;
-  max-width: 110px;
-  white-space: nowrap;
 }
 .close-button:hover, .reserve-button:hover {
   background: #ffd700;
@@ -314,39 +291,31 @@
 }
 @media (max-width: 600px) {
   .modal-content {
-    max-width: 92vw;
-    width: 92vw;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 320px;
+    padding: 0.6em 0.5em 0.8em 0.5em;
+    max-height: 60vh;
   }
   .therapist-modal-main {
-    gap: 0.7em;
+    gap: 0.3em;
   }
   .therapist-modal-profile {
     gap: 0.15em;
     padding: 0 0.1em;
   }
   .therapist-qa-table {
-    padding: 0.5em 0.2em 0.5em 0.2em;
-    gap: 0.3em;
+    padding: 0.4em 0.3em;
+    gap: 0.2em;
   }
   .therapist-qa-row {
-    font-size: 0.92em;
     gap: 0.08em;
-  }
-  .therapist-qa-q {
-    font-size: 0.92em;
-  }
-  .therapist-qa-a {
-    font-size: 0.92em;
+    font-size: 0.75em;
   }
   .close-button, .reserve-button {
-    font-size: 1em;
-    padding: 0.6em 0.7em;
-    max-width: 90px;
+    padding: 0.35em 0;
+    font-size: 0.8em;
   }
   .modal-overlay {
-    padding-top: 56px;
+    padding-top: 16px;
   }
 }
 

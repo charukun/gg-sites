@@ -18,14 +18,6 @@ export default function Reserve() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const script = document.createElement('script');
-    script.src = 'https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
   }, []);
 
   const handleCopy = () => {
@@ -100,15 +92,6 @@ export default function Reserve() {
           </button>
         </div>
         <div className="reserve-section">
-          <div
-            className="line-it-button"
-            data-lang="ja"
-            data-type="friend"
-            data-env="REAL"
-            data-count="true"
-            data-lineid={LINE_ID}
-            style={{ display: 'block', margin: '0 auto' }}
-          ></div>
           <a
             href={LINE_URL}
             target="_blank"
