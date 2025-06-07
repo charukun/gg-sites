@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 
-const LINE_ID = '330esodg';
+const LINE_ID = '@330esodg';
 const LINE_URL = `https://line.me/R/ti/p/${LINE_ID}`;
 
 export default function Reserve() {

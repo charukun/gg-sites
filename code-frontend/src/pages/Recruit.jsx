@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import './Recruit.css';
 
-const LINE_ID = '067ypubg';
+const LINE_ID = '@067ypubg';
 const LINE_URL = `https://line.me/R/ti/p/${LINE_ID}`;
 
 export default function Recruit() {
