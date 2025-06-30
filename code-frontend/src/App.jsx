@@ -18,13 +18,13 @@ import './App.css';
 function App() {
   return (
     <HelmetProvider>
-      <Router>
-        <div className="app">
+    <Router>
+      <div className="app">
           <div className="fixed-header-wrapper">
-            <Header />
+        <Header />
           </div>
-          <main className="main-content">
-            <Routes>
+        <main className="main-content">
+          <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/therapists" element={<Therapists />} />
               <Route path="/pricing" element={<Pricing />} />
@@ -34,11 +34,11 @@ function App() {
               <Route path="/recruit" element={<Recruit />} />
               <Route path="/mypage/*" element={<Mypage />} />
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
     </HelmetProvider>
   );
 }

@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .therapists-flower-bg {
   position: absolute;
   inset: 0;
@@ -17,6 +18,7 @@
   background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg"><g opacity="0.13"><path d="M50 200 Q100 100 200 200 T350 200" stroke="%234fa184" stroke-width="8" fill="none"/><circle cx="100" cy="100" r="20" fill="%234fa184"/><circle cx="300" cy="300" r="16" fill="%234fa184"/><circle cx="200" cy="300" r="10" fill="%234fa184"/></g></svg>') repeat;
   opacity: 0.18;
 }
+
 .therapists-center {
   z-index: 2;
   display: flex;
@@ -25,6 +27,7 @@
   justify-content: center;
   width: 100%;
 }
+
 .therapists-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -38,6 +41,7 @@
   padding-top: 1.5rem;
   padding-bottom: 2.5rem;
 }
+
 .therapist-card-v {
   aspect-ratio: 9/16;
   width: 100%;
@@ -49,7 +53,13 @@
   margin: 0 auto;
   overflow: hidden;
   position: relative;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  will-change: transform, opacity;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(50px);
 }
+
 .therapist-img-v {
   position: absolute;
   inset: 0;
@@ -63,6 +73,7 @@
   justify-content: center;
   overflow: hidden;
 }
+
 .therapist-img-gradient {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -72,6 +83,7 @@
   background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.0) 100%);
   z-index: 2;
 }
+
 .therapist-info-overlay {
   position: absolute;
   left: 0; right: 0; bottom: 0;
@@ -85,15 +97,18 @@
   color: #fff;
   text-shadow: 0 2px 12px #000c;
 }
+
 .therapist-info-top {
   width: 100%;
 }
+
 .therapist-info-bottom {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
 }
+
 .therapist-name-row {
   display: flex;
   align-items: center;
@@ -103,20 +118,23 @@
   color: #eba6a9;
   text-shadow: 0 2px 12px #0002;
 }
+
 .therapist-age-v {
   font-size: 0.95rem;
   font-weight: 700;
   color: #c9a66b;
 }
+
 .therapist-meta-v {
-  font-size: 0.75rem;
-  margin: 0.2em 0 0.7em 0;
+  font-size: 0.7rem;
+  margin: 0.2em 0 0.3em 0;
   opacity: 0.98;
   color: #fff;
   display: flex;
   align-items: center;
   white-space: nowrap;
 }
+
 .therapist-meta-v .location-icon {
   display: inline-flex;
   align-items: center;
@@ -125,6 +143,7 @@
   width: 0.9em;
   height: 0.9em;
 }
+
 .therapist-meta-v .location-text {
   display: inline-block;
   vertical-align: middle;
@@ -133,12 +152,14 @@
   line-height: 1;
   margin-left: 0.22em;
 }
+
 .therapist-sns-v {
   display: flex;
   gap: 0.6em;
   margin-top: 0.2em;
   justify-content: flex-start;
 }
+
 .therapist-sns-v .share-btn.x {
   width: 1.5em;
   height: 1.5em;
@@ -154,14 +175,17 @@
   transition: background 0.3s, color 0.3s, box-shadow 0.2s;
   padding: 0;
 }
+
 .therapist-sns-v .share-btn.x:hover {
   background: #333;
   color: #fff;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
 .therapist-sns-v .share-btn.x i {
   font-size: 1em;
 }
+
 .therapist-sns-v .sns-link.instagram { color: #e1306c; }
 .therapist-sns-v .sns-link.tiktok { color: #010101; }
 .therapist-sns-v .sns-link:hover {
@@ -185,6 +209,7 @@
   transition: box-shadow 0.2s, border 0.2s, transform 0.18s cubic-bezier(.4,2,.6,1), filter 0.18s;
   display: block;
 }
+
 .noimage-illust {
   display: flex;
   flex-direction: column;
@@ -194,16 +219,19 @@
   font-family: inherit;
   font-weight: 700;
 }
+
 .noimage-icon {
   font-size: 3.2rem;
   margin-bottom: 0.2em;
   filter: drop-shadow(0 2px 8px #eba6a955);
 }
+
 .noimage-text {
   font-size: 1.1rem;
   opacity: 0.7;
   letter-spacing: 0.08em;
 }
+
 .noimage-only {
   font-size: 1.25rem;
   color: #bbb;
@@ -217,6 +245,7 @@
   justify-content: center;
   height: 100%;
 }
+
 .comingsoon-text {
   font-size: 1.18rem;
   color: #eba6a9;
@@ -227,6 +256,7 @@
   margin-top: 0.2em;
   font-family: 'Quicksand', 'Nunito', 'Rounded Mplus 1c', 'Montserrat', 'Noto Sans JP', sans-serif;
 }
+
 .comingsoon-icon {
   display: block;
   margin: 0 auto 0.1em auto;
@@ -234,6 +264,7 @@
   width: 2.8em;
   height: 2.8em;
 }
+
 .therapist-image {
   width: 100%;
   height: 100%;
@@ -241,9 +272,11 @@
   border-radius: 0.8em;
   transition: transform 0.3s ease;
 }
+
 .therapist-card-v:hover .therapist-image {
   transform: scale(1.05);
 }
+
 .therapist-qa-table {
   margin-top: 1.1em;
   width: 100%;
@@ -255,6 +288,7 @@
   flex-direction: column;
   gap: 0.5em;
 }
+
 .therapist-qa-row {
   display: flex;
   flex-direction: row;
@@ -263,6 +297,7 @@
   font-size: 0.98em;
   line-height: 1.6;
 }
+
 .therapist-qa-q {
   color: #ffd700;
   font-weight: 700;
@@ -271,6 +306,7 @@
   letter-spacing: 0.03em;
   flex-shrink: 0;
 }
+
 .therapist-qa-a {
   color: #fff;
   font-weight: 500;
@@ -278,6 +314,7 @@
   letter-spacing: 0.01em;
   word-break: break-word;
 }
+
 .therapist-reserve-cute {
   display: flex;
   align-items: center;
@@ -296,6 +333,7 @@
   gap: 0.7em;
   text-shadow: 0 2px 12px #fff8, 0 0 2px #eba6a9, 0 0 1px #fff;
 }
+
 .image-indicator {
   display: flex;
   justify-content: center;
@@ -304,15 +342,17 @@
   gap: 0.5em;
   z-index: 2;
 }
+
 .therapist-location-v {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  margin: 0.15em 0 0.1em 0;
-  font-size: 0.7em;
+  margin: 0.08em 0 0.6em 0;
+  font-size: 0.65em;
   color: #fff;
   text-shadow: 0 1px 6px #0008;
 }
+
 .location-icon {
   width: 0.9em;
   height: 0.9em;
@@ -321,12 +361,14 @@
   opacity: 0.85;
   color: #e0e0e0;
 }
+
 .location-text {
   font-weight: 700;
   letter-spacing: 0.02em;
   font-size: 1em;
   color: #e0e0e0;
 }
+
 @media (max-width: 700px) {
   .therapists-list {
     grid-template-columns: repeat(2, 1fr);
@@ -388,6 +430,7 @@
     margin-left: 0.18em;
   }
 }
+
 .sns-popup {
   position: fixed;
   left: 50%;
@@ -405,12 +448,14 @@
   text-align: center;
   animation: popup-fade 1.2s;
 }
+
 @keyframes popup-fade {
   0% { opacity: 0; transform: translate(-50%, -60px);}
   10% { opacity: 1; transform: translate(-50%, -50%);}
   90% { opacity: 1; }
   100% { opacity: 0; transform: translate(-50%, -40px);}
 }
+
 .omakase-reserve-btn {
   background: #ffd700;
   color: #681616;
@@ -424,6 +469,7 @@
   transition: background 0.2s, color 0.2s;
   margin-bottom: 2em;
 }
+
 .omakase-reserve-btn:hover {
   background: #eba6a9;
   color: #fff;

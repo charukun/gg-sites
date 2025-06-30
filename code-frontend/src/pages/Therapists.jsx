@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PageBrandTitle from '../components/PageBrandTitle';
 import TherapistModal from './TherapistModal';
 import './Therapists.css';
@@ -13,6 +13,59 @@ export default function Therapists() {
   const [showTiktok] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const navigate = useNavigate();
+  const cardRefs = useRef([]);
+
+  // パララックス効果の実装
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const windowHeight = window.innerHeight;
+          
+          cardRefs.current.forEach((cardRef, index) => {
+            if (cardRef) {
+              const rect = cardRef.getBoundingClientRect();
+              const cardTop = rect.top;
+              const cardBottom = rect.bottom;
+              
+              // カードが画面に入ってくる位置を計算
+              const triggerPoint = windowHeight * 0.8; // 画面の80%の位置で開始
+              const endPoint = windowHeight * 0.2; // 画面の20%の位置で完了
+              
+              let opacity = 0;
+              let translateY = 50; // 下から50pxの位置から開始
+              
+              if (cardTop < triggerPoint && cardBottom > endPoint) {
+                // カードが画面に入ってきている
+                const progress = (triggerPoint - cardTop) / (triggerPoint - endPoint);
+                opacity = Math.min(1, Math.max(0, progress));
+                translateY = 50 - (progress * 50); // 50pxから0pxまで移動
+              } else if (cardBottom <= endPoint) {
+                // カードが画面の上部を通過済み
+                opacity = 1;
+                translateY = 0;
+              }
+              
+              cardRef.style.opacity = opacity;
+              cardRef.style.transform = `translateY(${translateY}px)`;
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // 初期位置を設定
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleTherapistClick = (therapist) => {
     setSelectedTherapist(therapist);
@@ -69,7 +122,12 @@ export default function Therapists() {
         <div className="therapist-reserve-cute">♥ 24時間予約受付中 ♥</div>
         <div className="therapists-list">
           {therapists.map((t, i) => (
-            <div className="therapist-card-v" key={i} onClick={() => handleTherapistClick(t)}>
+            <div 
+              className="therapist-card-v" 
+              key={i} 
+              onClick={() => handleTherapistClick(t)}
+              ref={el => cardRefs.current[i] = el}
+            >
               <div className="therapist-img-v">
                 {t.image ? (
                   <img src={t.image} alt={`女性用風俗GUILTY'S GARDEN大阪 セラピスト${t.name}の写真`} className="therapist-image" />
@@ -93,12 +151,12 @@ export default function Therapists() {
                   </div>
                   <div className="therapist-meta-v">
                     {t.height}cm / {t.weight}kg
-                    <span style={{display:'inline-flex',alignItems:'center',marginLeft:'0.8em'}}>
-                      <svg className="location-icon" style={{width:'1em',height:'1em',marginRight:'0.22em'}} viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                      </svg>
-                      <span className="location-text">{t.location}</span>
-                    </span>
+                  </div>
+                  <div className="therapist-location-v">
+                    <svg className="location-icon" style={{width:'1em',height:'1em',marginRight:'0.22em'}} viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span className="location-text">{t.location}</span>
                   </div>
                   <div className="therapist-sns-v">
                     {t.sns.x && t.sns.x !== '#' ? (

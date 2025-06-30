@@ -177,7 +177,7 @@
   font-size: 0.8rem;
   color: #681616;
   opacity: 0.98;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.1em;
 }
 
 .therapist-meta-v .location-icon {
@@ -194,6 +194,32 @@
   position: relative;
   top: 0.08em;
   line-height: 1;
+}
+
+.therapist-location-v {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0.1em 0 0.7em 0;
+  font-size: 0.7em;
+  color: #681616;
+  text-shadow: 0 1px 6px #0008;
+}
+
+.location-icon {
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.32em;
+  filter: drop-shadow(0 1px 2px #0006);
+  opacity: 0.85;
+  color: #681616;
+}
+
+.location-text {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1em;
+  color: #681616;
 }
 
 .therapist-sns-v {

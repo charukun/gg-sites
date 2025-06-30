@@ -31,7 +31,7 @@ const Header = () => {
                 <li><Link to="/pricing" onClick={closeMenu}>料金システム</Link></li>
                 <li><Link to="/schedule" onClick={closeMenu}>スケジュール</Link></li>
                 <li><Link to="/howtouse" onClick={closeMenu}>ご利用方法</Link></li>
-              </ul>
+        </ul>
             </div>
           </div>
         </>
