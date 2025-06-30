@@ -3,6 +3,7 @@ import yuuImage from '../assets/panel/yuu_top.jpg';
 import yoruImage from '../assets/panel/yoru_top.png';
 import syouImage from '../assets/panel/syou_top.jpg';
 import nobunagaImage from '../assets/panel/nobunaga.png';
+import takumaImage from '../assets/panel/takumatop.jpg';
 
 export const therapists = [
   {
@@ -12,9 +13,10 @@ export const therapists = [
     height: 176,
     weight: 68,
     image: yoruImage,
-    location: '大阪・神戸',
+    location: '大阪',
     sns: { x: 'https://x.com/GgardenYoru', instagram: '#', tiktok: '#' },
     qa: {
+      availableTime: '日曜以外の19時以降。日中の時間帯も調整次第で可能',
       hobby: 'デロデロなキス',
       holiday: '夜の街を散歩',
       food: 'おさしみ全般',
@@ -30,9 +32,10 @@ export const therapists = [
     height: 177,
     weight: 75,
     image: yuuImage,
-    location: '大阪・神戸',
+    location: '大阪',
     sns: { x: 'https://x.com/GgardenYuu', instagram: '#', tiktok: '#' },
     qa: {
+      availableTime: '平日の夕方以降、土日祝日は終日対応可能',
       hobby: 'カメラと旅行',
       holiday: 'おしゃれなカフェでのんびり',
       food: '和食とチョコレート',
@@ -51,6 +54,7 @@ export const therapists = [
     location: '大阪',
     sns: { x: '#', instagram: '#', tiktok: '#' },
     qa: {
+      availableTime: '平日夜間、土日は午前中から対応可能',
       hobby: '筋トレとカフェ巡り',
       holiday: '友達とドライブや映画',
       food: '焼肉とスイーツ',
@@ -69,6 +73,7 @@ export const therapists = [
     location: '大阪',
     sns: { x: '#', instagram: '#', tiktok: '#' },
     qa: {
+      availableTime: '平日の夜、土日祝日は終日対応',
       hobby: 'スポーツ全般',
       holiday: 'アウトドアでアクティブに',
       food: 'ラーメンとアイス',
@@ -87,12 +92,32 @@ export const therapists = [
     location: '大阪',
     sns: { x: '#', instagram: '#', tiktok: '#' },
     qa: {
+      availableTime: '終日対応可能',
       hobby: '歴史巡りと茶道',
       holiday: '美術館や神社巡り',
       food: '和菓子と抹茶',
       personality: '落ち着いていて頼もしい',
       date: '和の雰囲気の料亭でしっとり',
       message: 'あなたに安らぎを届けます。',
+    },
+  },
+  {
+    id: 'takuma',
+    name: '拓馬',
+    age: '40代',
+    height: 176,
+    weight: 64,
+    image: takumaImage,
+    location: '大阪',
+    sns: { x: '#', instagram: '#', tiktok: '#' },
+    qa: {
+      availableTime: '週末の夜以降、土日祝日',
+      hobby: '麺類への飽くなき探究、魚釣り、車の運転や船の操船',
+      holiday: '至高の1杯に出会う旅、船で海上散歩',
+      food: '麺、肉、魚',
+      personality: '優しくポジティブ',
+      date: '笑いの絶えない時間を共に過ごせるデート',
+      message: '素敵な時間を一緒に過ごしましょう',
     },
   },
 ]; 

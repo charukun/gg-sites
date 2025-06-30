@@ -6,7 +6,45 @@ const awsmobile = {
     "aws_appsync_graphqlEndpoint": "https://mqlbtwnh5jgg3m43f2r7jxj63m.appsync-api.ap-northeast-1.amazonaws.com/graphql",
     "aws_appsync_region": "ap-northeast-1",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-zrtmljwbbfgmfmqqdmrz3etigm"
+    "aws_appsync_apiKey": "da2-zrtmljwbbfgmfmqqdmrz3etigm",
+    "aws_cognito_identity_pool_id": "ap-northeast-1:0df9638d-ee2a-4a18-9c3c-ad49a2dda9fb",
+    "aws_cognito_region": "ap-northeast-1",
+    "aws_user_pools_id": "ap-northeast-1_6smgmtETT",
+    "aws_user_pools_web_client_id": "1h1ohfoj2dqhcm37nggktui20b",
+    "oauth": {
+        "domain": "guiltys-garden-auth-dev.auth.ap-northeast-1.amazoncognito.com",
+        "scope": [
+            "phone",
+            "email",
+            "openid",
+            "profile",
+            "aws.cognito.signin.user.admin"
+        ],
+        "redirectSignIn": "https://guiltys-garden-auth-dev.auth.ap-northeast-1.amazoncognito.com/oauth2/idpresponse/,http://localhost:3000/oauth2/idpresponse/",
+        "redirectSignOut": "https://guiltys-garden.com/,http://localhost:3000/",
+        "responseType": "code"
+    },
+    "federationTarget": "COGNITO_USER_POOLS",
+    "aws_cognito_username_attributes": [
+        "EMAIL"
+    ],
+    "aws_cognito_social_providers": [
+        "GOOGLE"
+    ],
+    "aws_cognito_signup_attributes": [
+        "EMAIL"
+    ],
+    "aws_cognito_mfa_configuration": "OFF",
+    "aws_cognito_mfa_types": [
+        "SMS"
+    ],
+    "aws_cognito_password_protection_settings": {
+        "passwordPolicyMinLength": 8,
+        "passwordPolicyCharacters": []
+    },
+    "aws_cognito_verification_mechanisms": [
+        "EMAIL"
+    ]
 };
 
 

@@ -8,7 +8,7 @@ export default function Login() {
       <div style={{background:'#fff',borderRadius:'1.5em',boxShadow:'0 4px 24px #eba6a933',padding:'2.5em 2em',maxWidth:400,width:'100%'}}>
         <h2 style={{textAlign:'center',color:'#681616',fontWeight:900,marginBottom:'1.2em',fontSize:'1.2em'}}>マイページ ログイン</h2>
         <Authenticator
-          socialProviders={['twitter']}
+          socialProviders={['google']}
           hideSignUp={true}
         >
           {({ signOut, user }) => (

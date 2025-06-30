@@ -11,6 +11,7 @@ import Reserve from './pages/Reserve';
 import NotFound from './pages/NotFound';
 import Recruit from './pages/Recruit';
 import Login from './pages/mypage/Login';
+import Mypage from './pages/mypage/Mypage';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
 
@@ -31,7 +32,7 @@ function App() {
               <Route path="/howtouse" element={<HowToUse />} />
               <Route path="/reserve" element={<Reserve />} />
               <Route path="/recruit" element={<Recruit />} />
-              <Route path="/mypage/login" element={<Login />} />
+              <Route path="/mypage/*" element={<Mypage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
