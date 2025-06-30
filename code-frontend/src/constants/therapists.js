@@ -4,6 +4,8 @@ import yoruImage from '../assets/panel/yoru_top.png';
 import syouImage from '../assets/panel/syou_top.jpg';
 import nobunagaImage from '../assets/panel/nobunaga.png';
 import takumaImage from '../assets/panel/takumatop.jpg';
+import yubiImage from '../assets/panel/yubitop.jpg';
+import atsushiImage from '../assets/panel/atsushitop.png';
 
 export const therapists = [
   {
@@ -52,7 +54,7 @@ export const therapists = [
     weight: 78,
     image: rikiyaImage,
     location: '大阪',
-    sns: { x: '#', instagram: '#', tiktok: '#' },
+    sns: { x: 'https://x.com/gg_rikiya', instagram: '#', tiktok: '#' },
     qa: {
       availableTime: '平日夜間、土日は午前中から対応可能',
       hobby: '筋トレとカフェ巡り',
@@ -71,7 +73,7 @@ export const therapists = [
     weight: 60,
     image: syouImage,
     location: '大阪',
-    sns: { x: '#', instagram: '#', tiktok: '#' },
+    sns: { x: 'https://x.com/ggardenshow', instagram: '#', tiktok: '#' },
     qa: {
       availableTime: '平日の夜、土日祝日は終日対応',
       hobby: 'スポーツ全般',
@@ -90,7 +92,7 @@ export const therapists = [
     weight: 72,
     image: nobunagaImage,
     location: '大阪',
-    sns: { x: '#', instagram: '#', tiktok: '#' },
+    sns: { x: 'https://x.com/ggardennobunaga', instagram: '#', tiktok: '#' },
     qa: {
       availableTime: '終日対応可能',
       hobby: '歴史巡りと茶道',
@@ -109,7 +111,7 @@ export const therapists = [
     weight: 64,
     image: takumaImage,
     location: '大阪',
-    sns: { x: '#', instagram: '#', tiktok: '#' },
+    sns: { x: 'https://x.com/g_g_takuma', instagram: '#', tiktok: '#' },
     qa: {
       availableTime: '週末の夜以降、土日祝日',
       hobby: '麺類への飽くなき探究、魚釣り、車の運転や船の操船',
@@ -118,6 +120,44 @@ export const therapists = [
       personality: '優しくポジティブ',
       date: '笑いの絶えない時間を共に過ごせるデート',
       message: '素敵な時間を一緒に過ごしましょう',
+    },
+  },
+  {
+    id: 'yubi',
+    name: 'ユビ',
+    age: '30代',
+    height: 175,
+    weight: 65,
+    image: yubiImage,
+    location: '大阪',
+    sns: { x: 'https://x.com/ggnoyubi', instagram: '#', tiktok: '#' },
+    qa: {
+      availableTime: '平日ならいつでも',
+      hobby: '音楽鑑賞とカフェ巡り',
+      holiday: 'お気に入りのカフェで読書',
+      food: 'イタリアンとスイーツ',
+      personality: '優しくて親しみやすい',
+      date: '静かなカフェでゆっくりお話し',
+      message: 'あなたの心を癒す時間を一緒に過ごしましょう',
+    },
+  },
+  {
+    id: 'atsushi',
+    name: 'アツシ',
+    age: '30代',
+    height: 175,
+    weight: 65,
+    image: atsushiImage,
+    location: '大阪',
+    sns: { x: 'https://x.com/ggardenatsushi', instagram: '#', tiktok: '#' },
+    qa: {
+      availableTime: '深夜帯',
+      hobby: '映画鑑賞とドライブ',
+      holiday: '夜景の見える場所でリラックス',
+      food: '焼肉と日本酒',
+      personality: '落ち着いていて包容力がある',
+      date: '静かな夜景スポットでゆっくり',
+      message: 'あなたの心を温かく包み込む時間を過ごしましょう',
     },
   },
 ]; 
