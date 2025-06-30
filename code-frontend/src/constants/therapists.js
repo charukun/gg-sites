@@ -1,6 +1,6 @@
 import rikiyaImage from '../assets/panel/rikiya_top.jpg';
 import yuuImage from '../assets/panel/yuu_top.jpg';
-import yoruImage from '../assets/panel/yoru_top.png';
+import yoruImage from '../assets/panel/yorutop.jpg';
 import syouImage from '../assets/panel/syou_top.jpg';
 import nobunagaImage from '../assets/panel/nobunaga.png';
 import takumaImage from '../assets/panel/takumatop.jpg';
@@ -30,7 +30,7 @@ export const therapists = [
   {
     id: 'atsushi',
     name: 'アツシ',
-    age: '30代',
+    age: '20代',
     height: 175,
     weight: 65,
     image: atsushiImage,
@@ -85,22 +85,22 @@ export const therapists = [
     },
   },
   {
-    id: 'nobunaga',
-    name: '信長',
-    age: '40代',
-    height: 174,
-    weight: 72,
-    image: nobunagaImage,
-    location: '関西',
-    sns: { x: 'https://x.com/ggardennobunaga', instagram: '#', tiktok: '#' },
+    id: 'rikiya',
+    name: 'RIKIYA',
+    age: '20代',
+    height: 171,
+    weight: 78,
+    image: rikiyaImage,
+    location: '京都',
+    sns: { x: 'https://x.com/gg_rikiya', instagram: '#', tiktok: '#' },
     qa: {
-      availableTime: '終日対応可能',
-      hobby: '歴史巡りと茶道',
-      holiday: '美術館や神社巡り',
-      food: '和菓子と抹茶',
-      personality: '落ち着いていて頼もしい',
-      date: '和の雰囲気の料亭でしっとり',
-      message: 'あなたに安らぎを届けます。',
+      availableTime: '平日夜間、土日は午前中から対応可能',
+      hobby: '筋トレとカフェ巡り',
+      holiday: '友達とドライブや映画',
+      food: '焼肉とスイーツ',
+      personality: '明るくて頼れる兄貴肌',
+      date: '夜景の見えるレストランでゆっくり',
+      message: '一緒に楽しい時間を過ごしましょう！',
     },
   },
   {
@@ -123,22 +123,22 @@ export const therapists = [
     },
   },
   {
-    id: 'rikiya',
-    name: 'RIKIYA',
-    age: '20代',
-    height: 171,
-    weight: 78,
-    image: rikiyaImage,
-    location: '京都',
-    sns: { x: 'https://x.com/gg_rikiya', instagram: '#', tiktok: '#' },
+    id: 'nobunaga',
+    name: '信長',
+    age: '40代',
+    height: 174,
+    weight: 72,
+    image: nobunagaImage,
+    location: '関西',
+    sns: { x: 'https://x.com/ggardennobunaga', instagram: '#', tiktok: '#' },
     qa: {
-      availableTime: '平日夜間、土日は午前中から対応可能',
-      hobby: '筋トレとカフェ巡り',
-      holiday: '友達とドライブや映画',
-      food: '焼肉とスイーツ',
-      personality: '明るくて頼れる兄貴肌',
-      date: '夜景の見えるレストランでゆっくり',
-      message: '一緒に楽しい時間を過ごしましょう！',
+      availableTime: '終日対応可能',
+      hobby: '歴史巡りと茶道',
+      holiday: '美術館や神社巡り',
+      food: '和菓子と抹茶',
+      personality: '落ち着いていて頼もしい',
+      date: '和の雰囲気の料亭でしっとり',
+      message: 'あなたに安らぎを届けます。',
     },
   },
   {
