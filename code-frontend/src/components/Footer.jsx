@@ -18,7 +18,8 @@ function Footer() {
       >
         ♥
       </a>
-      <div style={{fontSize:'0.9em',marginTop:'0.5em',color:'#eba6a9'}}>&copy; 2025 GUILTY'S GARDEN. All rights reserved.</div>
+      <div style={{fontSize:'0.9em',marginTop:'0.5em',color:'#eba6a9'}}>大阪府公安委員会指令 第67185号</div>
+      <div style={{fontSize:'0.9em',marginTop:'0.2em',color:'#eba6a9'}}>&copy; 2025 GUILTY'S GARDEN. All rights reserved.</div>
     </footer>
   );
 }
