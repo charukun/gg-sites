@@ -47,10 +47,10 @@ export default function Pricing() {
         <div className="pricing-mainprice-amount">¥12,000<span>/1h</span></div>
       </div>
       <div className="pricing-list">
-        {/* SHORT PLAN（銅） */}
+        {/* STANDARD PLAN（銅） */}
         <div className="pricing-card bronze">
           <div className="card-gradient">
-            <div className="card-title">SHORT<br />PLAN</div>
+            <div className="card-title">STANDARD<br />PLAN</div>
           </div>
           <div className="card-detail-simple">基本プラン</div>
           <div className="card-detail-simple">ご利用時間：3h～</div>
