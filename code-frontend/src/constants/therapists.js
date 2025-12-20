@@ -16,7 +16,7 @@ export const therapists = [
     weight: 64,
     image: takumaImage,
     location: '中四国・関西・東海',
-    sns: { x: 'https://x.com/g_g_takuma', instagram: '#', tiktok: '#' },
+    sns: { x: 'https://x.com/takuma_g_g', instagram: '#', tiktok: '#' },
     qa: {
       availableTime: '週末の夜以降、土日祝日',
       hobby: '麺類への飽くなき探究、魚釣り、車の運転や船の操船',

@@ -20,6 +20,9 @@
       },
       "api": {
         "backend": {}
+      },
+      "auth": {
+        "backend789f759b": {}
       }
     }
   }

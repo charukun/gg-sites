@@ -1,0 +1,17 @@
+{
+  "name": "playwright-gen",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "playwright codegen",
+    "build": "playwright install --with-deps;playwright install --with-deps webkit",
+    "e2e:prepareOnce-win": "playwright install --with-deps && playwright install --with-deps webkit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.53.0",
+    "playwright": "latest"
+  }
+} 
