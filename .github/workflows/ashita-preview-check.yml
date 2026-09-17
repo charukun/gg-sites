@@ -12,22 +12,24 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
-      - name: Verify the exact published HTML bytes
+      - name: Inspect public host response
         env:
           PREVIEW_URL: https://rawcdn.githack.com/charukun/gg-sites/d62eb37b9be76a5b1d9ebe9433ed7524e1143bac/apps/ashita/index.html
         run: |
           python3 - <<'PY'
-          import hashlib, os, urllib.request
-          url = os.environ['PREVIEW_URL']
-          with urllib.request.urlopen(url, timeout=45) as response:
-              body = response.read()
-              print('PUBLIC_HTTP_STATUS', response.status)
-              print('PUBLIC_CONTENT_TYPE', response.headers.get('Content-Type'))
-              print('VERIFIED_PUBLIC_URL', response.url)
-          actual = hashlib.sha256(body).hexdigest()
-          print('PUBLIC_SOURCE_SHA256', actual)
-          assert actual == '4ba5ffd0eb1b9a7767c02885a70372f1b1f1bd1f6bcac7279fd1cf484715774c'
-          print('PUBLIC_SOURCE_MATCH_PASS')
+          import hashlib, os, urllib.request, urllib.error
+          try:
+              with urllib.request.urlopen(os.environ['PREVIEW_URL'], timeout=45) as response:
+                  body = response.read()
+                  print('PUBLIC_HTTP_STATUS', response.status)
+                  print('PUBLIC_CONTENT_TYPE', response.headers.get('Content-Type'))
+                  print('PUBLIC_SOURCE_SHA256', hashlib.sha256(body).hexdigest())
+          except urllib.error.HTTPError as error:
+              print('HOST_HTTP_STATUS', error.code)
+              print('HOST_RESPONSE_HEADERS', str(error.headers))
+              print('HOST_RESPONSE_BODY', error.read(12000).decode('utf-8', errors='replace'))
+          except Exception as error:
+              print('HOST_PROBE_ERROR', repr(error))
           PY
       - uses: actions/setup-node@v4
         with:
@@ -42,18 +44,21 @@ jobs:
           node <<'JS'
           const { chromium } = require('playwright');
           const assert = require('node:assert/strict');
+          const {createHash} = require('node:crypto');
           (async () => {
             const browser = await chromium.launch({channel:'chrome',headless:true});
-            const errors=[];
+            const errors=[], responseBodies=[];
             const a=await browser.newContext({viewport:{width:390,height:844},locale:'ja-JP',timezoneId:'Asia/Tokyo'});
             const b=await browser.newContext({viewport:{width:390,height:844},locale:'ja-JP',timezoneId:'Asia/Tokyo'});
             const p=await a.newPage(),q=await b.newPage();
             p.on('pageerror',e=>errors.push(String(e)));q.on('pageerror',e=>errors.push(String(e)));
+            p.on('response',r=>{if(r.url()===process.env.PREVIEW_URL)responseBodies.push(r.body().then(buf=>createHash('sha256').update(buf).digest('hex')).catch(()=>''))});
             async function open(page,url){
-              await page.goto(url,{waitUntil:'domcontentloaded',timeout:60000});
+              const response=await page.goto(url,{waitUntil:'domcontentloaded',timeout:60000});
+              console.log('BROWSER_HTTP_STATUS',response&&response.status());
               await page.waitForTimeout(800);
               if(!await page.locator('main#main').count()){
-                console.log('CDN_CONFIRMATION_PAGE',await page.locator('body').innerText());
+                console.log('HOST_BROWSER_PAGE',await page.locator('body').innerText());
                 const button=page.getByRole('button',{name:/continue|proceed|open|understand|confirm|visit|show|load|yes/i}).first();
                 if(await button.count()) await button.click();
                 else {
@@ -65,6 +70,9 @@ jobs:
             }
             try{
               await open(p,process.env.PREVIEW_URL);
+              const hashes=await Promise.all(responseBodies);
+              assert.ok(hashes.includes('4ba5ffd0eb1b9a7767c02885a70372f1b1f1bd1f6bcac7279fd1cf484715774c'),'Exact public HTML source hash must match');
+              console.log('PUBLIC_SOURCE_MATCH_PASS');
               assert.match(await p.locator('main h1').textContent(),/その出会いは/);
               assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
               await p.screenshot({path:'screenshots/public-mobile-home.png',fullPage:true,animations:'disabled'});
