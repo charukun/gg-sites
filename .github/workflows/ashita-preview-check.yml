@@ -1,0 +1,118 @@
+name: Ashita public preview smoke check
+on:
+  push:
+    branches: [feat/ashita-future-diary]
+    paths:
+      - apps/ashita/**
+      - .github/workflows/ashita-preview-check.yml
+permissions:
+  contents: read
+jobs:
+  public-preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Verify the exact published HTML bytes
+        env:
+          PREVIEW_URL: https://rawcdn.githack.com/charukun/gg-sites/d62eb37b9be76a5b1d9ebe9433ed7524e1143bac/apps/ashita/index.html
+        run: |
+          python3 - <<'PY'
+          import hashlib, os, urllib.request
+          url = os.environ['PREVIEW_URL']
+          with urllib.request.urlopen(url, timeout=45) as response:
+              body = response.read()
+              print('PUBLIC_HTTP_STATUS', response.status)
+              print('PUBLIC_CONTENT_TYPE', response.headers.get('Content-Type'))
+              print('VERIFIED_PUBLIC_URL', response.url)
+          actual = hashlib.sha256(body).hexdigest()
+          print('PUBLIC_SOURCE_SHA256', actual)
+          assert actual == '4ba5ffd0eb1b9a7767c02885a70372f1b1f1bd1f6bcac7279fd1cf484715774c'
+          print('PUBLIC_SOURCE_MATCH_PASS')
+          PY
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser smoke-test client
+        run: npm install --no-save --package-lock=false playwright@1.51.1
+      - name: Verify public browser interactions
+        env:
+          PREVIEW_URL: https://rawcdn.githack.com/charukun/gg-sites/d62eb37b9be76a5b1d9ebe9433ed7524e1143bac/apps/ashita/index.html
+        run: |
+          mkdir -p screenshots
+          node <<'JS'
+          const { chromium } = require('playwright');
+          const assert = require('node:assert/strict');
+          (async () => {
+            const browser = await chromium.launch({channel:'chrome',headless:true});
+            const errors=[];
+            const a=await browser.newContext({viewport:{width:390,height:844},locale:'ja-JP',timezoneId:'Asia/Tokyo'});
+            const b=await browser.newContext({viewport:{width:390,height:844},locale:'ja-JP',timezoneId:'Asia/Tokyo'});
+            const p=await a.newPage(),q=await b.newPage();
+            p.on('pageerror',e=>errors.push(String(e)));q.on('pageerror',e=>errors.push(String(e)));
+            async function open(page,url){
+              await page.goto(url,{waitUntil:'domcontentloaded',timeout:60000});
+              await page.waitForTimeout(800);
+              if(!await page.locator('main#main').count()){
+                console.log('CDN_CONFIRMATION_PAGE',await page.locator('body').innerText());
+                const button=page.getByRole('button',{name:/continue|proceed|open|understand|confirm|visit|show|load|yes/i}).first();
+                if(await button.count()) await button.click();
+                else {
+                  const target=page.locator('a[href]').filter({hasText:/continue|proceed|open|understand|confirm|visit|show|load|yes/i}).first();
+                  if(await target.count()) await target.click();
+                }
+              }
+              await page.locator('main#main h1').waitFor({timeout:30000});
+            }
+            try{
+              await open(p,process.env.PREVIEW_URL);
+              assert.match(await p.locator('main h1').textContent(),/その出会いは/);
+              assert.ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+              await p.screenshot({path:'screenshots/public-mobile-home.png',fullPage:true,animations:'disabled'});
+              await p.getByRole('button',{name:'未来の日記をひらく',exact:true}).click();
+              await p.getByRole('button',{name:'この未来を選んでみる',exact:true}).click();
+              assert.equal(await p.locator('[data-step]').count(),3);
+              await p.locator('[data-step="0"]').check();
+              await p.reload({waitUntil:'domcontentloaded'});
+              await p.locator('[data-step="0"]').waitFor();
+              assert.equal(await p.locator('[data-step="0"]').isChecked(),true);
+              console.log('PUBLIC_REAL_STORAGE_RELOAD_PASS');
+              await p.getByRole('button',{name:'誰かと同じ未来へ',exact:true}).click();
+              await p.locator('#invite-form [name="nick"]').fill('公開確認A');
+              await p.locator('#invite-form [name="age"]').check();
+              await p.locator('#invite-form [name="consent"]').check();
+              await p.getByRole('button',{name:'招待リンクをつくる',exact:true}).click();
+              const invitation=await p.locator('#share-link').inputValue();
+              assert.ok(invitation.startsWith(process.env.PREVIEW_URL+'#letter='));
+              await open(q,invitation);
+              await q.locator('#accept-form [name="nick"]').fill('公開確認B');
+              await q.locator('#accept-form input[type="checkbox"]').check();
+              await q.getByRole('button',{name:'参加したい、と返事を書く',exact:true}).click();
+              const reply=await q.locator('#share-link').inputValue();
+              await p.goto(reply,{waitUntil:'domcontentloaded'});
+              await p.getByRole('button',{name:'私も、一緒に進んでみる',exact:true}).click();
+              const confirmation=await p.locator('#share-link').inputValue();
+              await q.goto(confirmation,{waitUntil:'domcontentloaded'});
+              await q.getByRole('button',{name:'出会いのページへ',exact:true}).click();
+              assert.match(await q.locator('.record .tag').first().textContent(),/相互に参加を選択/);
+              await q.screenshot({path:'screenshots/public-mutual-confirmation.png',fullPage:true,animations:'disabled'});
+              assert.deepEqual(errors,[]);
+              console.log('PUBLIC_TWO_BROWSER_LINK_EXCHANGE_PASS');
+              console.log('PUBLIC_BROWSER_SMOKE_PASS',process.env.PREVIEW_URL);
+            }catch(e){
+              console.error('PUBLIC_BROWSER_SMOKE_FAIL',e);
+              console.error('PAGE_A',p.url(),await p.locator('body').innerText().catch(()=>''));
+              console.error('PAGE_B',q.url(),await q.locator('body').innerText().catch(()=>''));
+              await p.screenshot({path:'screenshots/failure-a.png',fullPage:true}).catch(()=>{});
+              await q.screenshot({path:'screenshots/failure-b.png',fullPage:true}).catch(()=>{});
+              process.exitCode=1;
+            }finally{await browser.close()}
+          })().catch(e=>{console.error(e);process.exitCode=1});
+          JS
+      - name: Preserve public verification screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ashita-public-preview-screenshots
+          path: screenshots/
+          if-no-files-found: ignore
+          retention-days: 7
