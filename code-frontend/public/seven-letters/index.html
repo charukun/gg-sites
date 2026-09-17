@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0b10" />
+  <meta name="description" content="7日後のあなたから届く日記。その通りに動くと、まだ知らない誰かとの未来が少しだけ近づく。" />
+  <title>SEVEN LETTERS | 未来から届く日記</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <button class="brand" data-go="home" aria-label="ホームへ">
+      <span class="brand-mark">7</span>
+      <span>SEVEN LETTERS</span>
+    </button>
+    <button id="soundToggle" class="icon-btn" aria-label="サウンド設定">◌</button>
+  </header>
+
+  <main id="app" class="app-shell">
+    <section id="home" class="view active" data-view>
+      <div class="hero">
+        <div class="eyebrow">A LETTER FROM YOUR FUTURE SELF</div>
+        <h1>未来のあなたから、<br><span>日記が届く。</span></h1>
+        <p class="lead">そこに書かれた通りに一日を過ごすと、<br>まだ知らない誰かとの物語が動き出すかもしれない。</p>
+
+        <div class="letter-stack" aria-hidden="true">
+          <div class="ghost-card g1"></div>
+          <div class="ghost-card g2"></div>
+          <article class="letter-card preview-letter">
+            <div class="letter-meta">
+              <span>2026.09.24</span>
+              <span>7 DAYS LATER</span>
+            </div>
+            <p class="handwritten">「18:40。帰り道をひとつ変えて。<br>小さな書店に入って、青い表紙の本を手に取る。」</p>
+            <div class="stamp">FROM<br>YOU</div>
+          </article>
+        </div>
+
+        <button id="startBtn" class="primary-btn large">未来の日記を受け取る</button>
+        <button class="text-btn" data-go="how">どういうサービス？</button>
+        <p class="age-note">18歳以上限定。位置情報は市区町村レベルまでで設計。</p>
+      </div>
+    </section>
+
+    <section id="how" class="view" data-view>
+      <div class="page-head">
+        <button class="back-btn" data-go="home">←</button>
+        <div>
+          <div class="eyebrow">HOW IT WORKS</div>
+          <h2>偶然を、少しだけ設計する。</h2>
+        </div>
+      </div>
+
+      <div class="steps">
+        <article class="step-card">
+          <span>01</span>
+          <h3>7日後の日記が届く</h3>
+          <p>未来のあなたが残したような短い日記。時間・行動・小さな目印が書かれています。</p>
+        </article>
+        <article class="step-card">
+          <span>02</span>
+          <h3>その通りに動いてみる</h3>
+          <p>無理な指示はなし。散歩、カフェ、書店、公園など、日常を少しだけずらす行動です。</p>
+        </article>
+        <article class="step-card">
+          <span>03</span>
+          <h3>同じ未来を選んだ人が現れる</h3>
+          <p>条件が重なった相手がいたら、顔写真より先に「その人の日記の一節」が届きます。</p>
+        </article>
+        <article class="step-card">
+          <span>04</span>
+          <h3>お互いが選んだ時だけ会話へ</h3>
+          <p>双方が「続きを読んでみたい」を選んだ時だけプロフィールとチャットが開きます。</p>
+        </article>
+      </div>
+
+      <div class="safety-box">
+        <strong>安全設計</strong>
+        <p>自宅・職場・正確な現在地を相手に公開しません。深夜帯・危険地点・一対一の密室につながる指示は生成しない前提です。</p>
+      </div>
+      <button class="primary-btn" data-action="begin-profile">はじめる</button>
+    </section>
+
+    <section id="profile" class="view" data-view>
+      <div class="page-head">
+        <button class="back-btn" data-go="home">←</button>
+        <div>
+          <div class="eyebrow">FIRST PAGE</div>
+          <h2>未来のあなたを少しだけ教えて。</h2>
+        </div>
+      </div>
+
+      <form id="profileForm" class="profile-form">
+        <label>
+          呼ばれたい名前
+          <input id="nickname" type="text" maxlength="16" placeholder="例：ちはる" required />
+        </label>
+
+        <label>
+          年齢
+          <select id="age" required>
+            <option value="">選択してください</option>
+          </select>
+        </label>
+
+        <label>
+          だいたいの活動エリア
+          <select id="area" required>
+            <option value="">選択してください</option>
+            <option>東京</option><option>横浜</option><option>名古屋</option><option>大阪</option><option>京都</option><option>神戸</option><option>福岡</option><option>札幌</option><option>仙台</option><option>その他</option>
+          </select>
+        </label>
+
+        <fieldset>
+          <legend>未来で出会いたい関係</legend>
+          <div class="chips single-choice" data-group="intent">
+            <button type="button" data-value="恋人">恋人</button>
+            <button type="button" data-value="友達">友達</button>
+            <button type="button" data-value="まずは話したい">まずは話したい</button>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>好きな寄り道</legend>
+          <div class="chips multi-choice" data-group="vibes">
+            <button type="button" data-value="カフェ">カフェ</button>
+            <button type="button" data-value="本屋">本屋</button>
+            <button type="button" data-value="散歩">散歩</button>
+            <button type="button" data-value="音楽">音楽</button>
+            <button type="button" data-value="映画">映画</button>
+            <button type="button" data-value="ごはん">ごはん</button>
+            <button type="button" data-value="アート">アート</button>
+            <button type="button" data-value="夜景">夜景</button>
+          </div>
+        </fieldset>
+
+        <label class="consent">
+          <input id="consent" type="checkbox" required />
+          <span>18歳以上で、利用ルールと安全ガイドに同意します。</span>
+        </label>
+
+        <button class="primary-btn" type="submit">最初の日記を開く</button>
+      </form>
+    </section>
+
+    <section id="diary" class="view" data-view>
+      <div class="diary-screen">
+        <div class="diary-top">
+          <div>
+            <div class="eyebrow">LETTER 01 / 07</div>
+            <h2><span id="diaryName">あなた</span>へ</h2>
+          </div>
+          <div class="future-date" id="futureDate">7日後</div>
+        </div>
+
+        <article class="full-letter">
+          <div class="letter-meta">
+            <span id="letterDate"></span>
+            <span>FROM 7 DAYS LATER</span>
+          </div>
+          <div class="wax">7</div>
+          <p id="diaryText" class="diary-copy"></p>
+          <div class="signature">未来のあなたより</div>
+        </article>
+
+        <div class="mission-meta">
+          <div><span>時間</span><strong id="missionTime">18:40</strong></div>
+          <div><span>目印</span><strong id="missionSign">青いもの</strong></div>
+          <div><span>所要</span><strong>20〜40分</strong></div>
+        </div>
+
+        <button id="acceptMission" class="primary-btn">この未来を選ぶ</button>
+        <button id="rerollMission" class="text-btn">今日は別の未来にする</button>
+      </div>
+    </section>
+
+    <section id="mission" class="view" data-view>
+      <div class="mission-screen">
+        <div class="eyebrow">TODAY'S THREAD</div>
+        <h2>未来につながる糸を、<br>一本だけ。</h2>
+
+        <div class="thread-orbit" aria-hidden="true">
+          <div class="orbit o1"></div>
+          <div class="orbit o2"></div>
+          <div class="core-dot"></div>
+        </div>
+
+        <article class="mission-card">
+          <span class="mission-label">TODAY 18:40</span>
+          <p id="missionSummary">帰り道をひとつ変えて、小さな書店へ。青い表紙の本を1冊だけ手に取る。</p>
+          <div class="status-row"><span class="pulse"></span><span>未来はまだ確定していません</span></div>
+        </article>
+
+        <button id="completeMission" class="primary-btn">行ってきた</button>
+        <button id="skipMission" class="secondary-btn">今日は行けなかった</button>
+        <p class="microcopy">無理をしないことも、未来の選択です。</p>
+      </div>
+    </section>
+
+    <section id="reveal" class="view" data-view>
+      <div class="reveal-screen">
+        <div class="eyebrow">THE FUTURE MOVED</div>
+        <h2>あなたが動いたことで、<br>誰かのページにも変化がありました。</h2>
+
+        <div class="match-reveal">
+          <div class="match-avatar" id="matchAvatar">?</div>
+          <div class="match-copy">
+            <span>同じ未来を選んだ人</span>
+            <h3 id="matchName">まだ名前は秘密</h3>
+            <p id="matchSnippet">「今日は、普段なら入らない場所に入ってみた。知らない本の背表紙を眺める時間が、思ったより好きだった。」</p>
+          </div>
+        </div>
+
+        <div class="common-tags" id="commonTags">
+          <span>本屋</span><span>静かな場所</span><span>夜の寄り道</span>
+        </div>
+
+        <p class="reveal-note">写真や肩書きより先に、相手が残した言葉だけが届きます。</p>
+
+        <button id="likeMatch" class="primary-btn">この人の続きを読んでみたい</button>
+        <button id="passMatch" class="text-btn">今回はここまで</button>
+      </div>
+    </section>
+
+    <section id="mutual" class="view" data-view>
+      <div class="mutual-screen">
+        <div class="constellation" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="eyebrow">MUTUAL LETTER</div>
+        <h2>向こうのあなたも、<br>続きを選びました。</h2>
+        <p>ここから初めて、お互いのプロフィールが開きます。</p>
+
+        <article class="profile-reveal-card">
+          <div class="avatar-photo">N</div>
+          <div>
+            <h3>Nao <span>29</span></h3>
+            <p>名古屋 / デザイン関係</p>
+            <p class="bio">知らない喫茶店と、閉店前の本屋が好き。休みの日は目的地を決めずに歩きます。</p>
+          </div>
+        </article>
+
+        <div class="chat-preview">
+          <span class="chat-label">未来から届いた最初の話題</span>
+          <p>「青い表紙の本、何を選びましたか？」</p>
+        </div>
+
+        <button id="openChat" class="primary-btn">会話をはじめる</button>
+        <button class="secondary-btn" data-go="inbox">あとで</button>
+      </div>
+    </section>
+
+    <section id="chat" class="view" data-view>
+      <div class="chat-screen">
+        <div class="chat-header">
+          <button class="back-btn" data-go="inbox">←</button>
+          <div class="mini-avatar">N</div>
+          <div><strong>Nao</strong><span>未来の手紙 #01</span></div>
+          <button class="icon-btn">⋯</button>
+        </div>
+
+        <div id="chatMessages" class="messages">
+          <div class="day-sep">TODAY</div>
+          <div class="bubble theirs">青い表紙の本、何を選びましたか？</div>
+        </div>
+
+        <form id="chatForm" class="chat-input">
+          <input id="chatText" type="text" maxlength="240" placeholder="メッセージを書く" autocomplete="off" />
+          <button type="submit">送信</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="inbox" class="view" data-view>
+      <div class="page-head no-back">
+        <div>
+          <div class="eyebrow">LETTERS</div>
+          <h2>届いた未来</h2>
+        </div>
+      </div>
+      <div class="inbox-list">
+        <button class="inbox-item" data-go="chat">
+          <div class="mini-avatar">N</div>
+          <div><strong>Nao</strong><p>青い表紙の本、何を選びましたか？</p></div>
+          <time>今</time>
+        </button>
+        <div class="locked-item">
+          <div class="lock-symbol">◌</div>
+          <div><strong>次の未来はまだ届いていません</strong><p>明日の朝、2通目の日記が届きます。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="account" class="view" data-view>
+      <div class="page-head no-back">
+        <div>
+          <div class="eyebrow">YOUR STORY</div>
+          <h2 id="accountTitle">あなたの記録</h2>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div><strong>1</strong><span>選んだ未来</span></div>
+        <div><strong>1</strong><span>動いた日</span></div>
+        <div><strong>1</strong><span>つながった人</span></div>
+      </div>
+      <div class="settings-list">
+        <button>プロフィール <span>›</span></button>
+        <button>未来の好み <span>›</span></button>
+        <button>安全設定 <span>›</span></button>
+        <button>ブロック・通報 <span>›</span></button>
+        <button id="resetDemo">デモを最初から <span>↺</span></button>
+      </div>
+      <div class="demo-badge">MVP DEMO / 実ユーザー接続前</div>
+    </section>
+  </main>
+
+  <nav id="bottomNav" class="bottom-nav hidden" aria-label="メインナビゲーション">
+    <button data-go="diary"><span>✦</span>日記</button>
+    <button data-go="inbox"><span>□</span>手紙</button>
+    <button data-go="account"><span>○</span>自分</button>
+  </nav>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
