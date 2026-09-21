@@ -10,14 +10,22 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify Supabase museum preview
+      - name: Verify public museum and protected director console
         shell: bash
         run: |
           set -e
-          URL="https://jfaeqbyxsolqnrhbnrnt.supabase.co/functions/v1/museum-preview"
-          code=$(curl -L -sS -o /tmp/page.html -w "%{http_code}" "$URL")
-          echo "status=$code"
-          test "$code" = "200"
-          grep -q "PARALYZE AREA" /tmp/page.html
-          grep -q "SCROLL TO WALK" /tmp/page.html
-          echo "LIVE_URL=$URL"
+          MUSEUM="https://jfaeqbyxsolqnrhbnrnt.supabase.co/functions/v1/museum-preview"
+          DIRECTOR="https://jfaeqbyxsolqnrhbnrnt.supabase.co/functions/v1/director-console"
+
+          museum_code=$(curl -L -sS -o /tmp/museum.html -w "%{http_code}" "$MUSEUM")
+          echo "museum_status=$museum_code"
+          test "$museum_code" = "200"
+          grep -q "PARALYZE AREA" /tmp/museum.html
+          grep -q "SCROLL TO WALK" /tmp/museum.html
+
+          director_code=$(curl -L -sS -o /tmp/director.txt -w "%{http_code}" "$DIRECTOR" || true)
+          echo "director_unauth_status=$director_code"
+          test "$director_code" = "401"
+
+          echo "MUSEUM_URL=$MUSEUM"
+          echo "DIRECTOR_URL=$DIRECTOR"
