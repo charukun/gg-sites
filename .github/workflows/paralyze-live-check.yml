@@ -10,20 +10,14 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Verify Amplify public route
+      - name: Verify Supabase museum preview
         shell: bash
         run: |
           set -e
-          URL="https://main.d8nvvqbn8qqtd.amplifyapp.com/paralyze-area"
-          for i in $(seq 1 18); do
-            code=$(curl -L -sS -o /tmp/page.html -w "%{http_code}" "$URL" || true)
-            echo "attempt=$i status=$code"
-            if [ "$code" = "200" ] && grep -q "PARALYZE AREA" /tmp/page.html; then
-              echo "LIVE_URL=$URL"
-              exit 0
-            fi
-            sleep 10
-          done
-          echo "Amplify route did not become ready."
-          head -c 500 /tmp/page.html || true
-          exit 1
+          URL="https://jfaeqbyxsolqnrhbnrnt.supabase.co/functions/v1/museum-preview"
+          code=$(curl -L -sS -o /tmp/page.html -w "%{http_code}" "$URL")
+          echo "status=$code"
+          test "$code" = "200"
+          grep -q "PARALYZE AREA" /tmp/page.html
+          grep -q "SCROLL TO WALK" /tmp/page.html
+          echo "LIVE_URL=$URL"
