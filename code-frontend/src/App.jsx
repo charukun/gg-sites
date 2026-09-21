@@ -53,7 +53,8 @@ function SiteRoutes() {
 }
 
 function App() {
-  return <HelmetProvider><Router><SiteRoutes /></Router></HelmetProvider>;
+  const basename = process.env.REACT_APP_PAGES_BASE || undefined;
+  return <HelmetProvider><Router basename={basename}><SiteRoutes /></Router></HelmetProvider>;
 }
 
 export default App;
