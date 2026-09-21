@@ -146,6 +146,20 @@ export async function uploadProductImage(file, productId, role='main') {
 }
 
 export async function saveProduct(values, files = [], editingId = null) {
+  let displayOrder = Number(values.display_order ?? 0);
+  let displayPosition = values.display_position;
+  if (!editingId && values.exhibition_id && !values.display_position) {
+    const { data: last } = await supabase
+      .from('products')
+      .select('display_order,display_position')
+      .eq('exhibition_id', values.exhibition_id)
+      .order('display_order', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    displayOrder = Number(last?.display_order ?? 0) + 10;
+    const slot = Math.max(0, Math.round(displayOrder / 10) - 1);
+    displayPosition = { x: slot % 2 === 0 ? -2.4 : 2.4, y: 0, z: -slot * 8 - 8 };
+  }
   const payload = {
     slug: values.slug || `${values.name}`.trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'') + '-' + Date.now().toString(36),
     name: values.name,
@@ -157,8 +171,8 @@ export async function saveProduct(values, files = [], editingId = null) {
     drop_id: values.drop_id || null,
     exhibition_id: values.exhibition_id || null,
     display_template: values.display_template || 'glass_case',
-    display_position: values.display_position || { x: 0, y: 0, z: 0 },
-    display_order: Number(values.display_order || 0),
+    display_position: displayPosition || { x: -2.4, y: 0, z: -8 },
+    display_order: displayOrder,
     is_published: !!values.is_published,
     publish_at: values.publish_at || null,
     sale_start_at: values.sale_start_at || null,
