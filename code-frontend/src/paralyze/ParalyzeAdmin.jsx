@@ -5,7 +5,12 @@ import { supabase } from './supabase';
 import './ParalyzeAdmin.css';
 
 const empty={name:'',price:'',description:'',category:'tee',drop_id:'',exhibition_id:'',display_template:'glass_case',publish_at:'',sale_start_at:'',pod_provider:'printful',pod_product_id:'',payment_provider:'stripe',payment_product_id:'',payment_price_id:'',purchase_url:'',is_published:false,stock_status:'made_to_order'};
-const fmtLocal=v=>v?new Date(v).toISOString().slice(0,16):'';
+const fmtLocal=v=>{
+  if(!v)return '';
+  const d=new Date(v);
+  const local=new Date(d.getTime()-d.getTimezoneOffset()*60000);
+  return local.toISOString().slice(0,16);
+};
 
 export default function ParalyzeAdmin(){
   const [user,setUser]=useState(undefined),[email,setEmail]=useState(''),[catalog,setCatalog]=useState({products:[],drops:[],exhibitions:[]});
@@ -16,7 +21,16 @@ export default function ParalyzeAdmin(){
   const set=(k,v)=>setForm(f=>({...f,[k]:v}));
   const reset=()=>{setForm(empty);setFiles([]);setEditing(null)};
   const edit=p=>{setEditing(p.id);setForm({...empty,...p,drop_id:p.drop_id||'',exhibition_id:p.exhibition_id||'',publish_at:fmtLocal(p.publish_at),sale_start_at:fmtLocal(p.sale_start_at)});window.scrollTo({top:0,behavior:'smooth'})};
-  const submit=async e=>{e.preventDefault();setBusy(true);setMessage('');try{await saveProduct(form,files,editing);await refresh();reset();setMessage('保存しました。ミュージアムへ自動反映されます。')}catch(err){setMessage(err.message)}finally{setBusy(false)}};
+  const submit=async e=>{
+    e.preventDefault();
+    if(!editing && files.length===0){setMessage('商品画像を1枚以上選択してください。');return;}
+    setBusy(true);setMessage('');
+    try{
+      await saveProduct(form,files,editing);
+      await refresh();reset();
+      setMessage('保存しました。展示位置も自動計算され、ミュージアムへ反映されます。');
+    }catch(err){setMessage(err.message)}finally{setBusy(false)}
+  };
   const duplicate=async p=>{setBusy(true);try{const clone={...p,name:`${p.name} COPY`,slug:'',is_published:false,display_order:(p.display_order||0)+1};const created=await saveProduct(clone,[],null);const links=(p.product_assets||[]).map(x=>({product_id:created.id,asset_id:x.asset.id,role:x.role,display_order:x.display_order}));if(links.length){const{error}=await supabase.from('product_assets').insert(links);if(error)throw error;}await refresh();setMessage('複製しました。画像を共有した非公開コピーです。')}catch(e){setMessage(e.message)}finally{setBusy(false)}};
   const toggle=async p=>{await supabase.from('products').update({is_published:!p.is_published}).eq('id',p.id);await refresh()};
   const remove=async p=>{if(!window.confirm(`${p.name} を削除しますか？`))return;await supabase.from('products').delete().eq('id',p.id);await refresh()};
@@ -31,7 +45,7 @@ export default function ParalyzeAdmin(){
     <main className="paa-main">
       <section className="paa-editor"><div className="paa-section-head"><div><span>DIRECTOR TOOL</span><h1>{editing?'展示物を編集':'＋ 新しい展示物'}</h1></div>{editing&&<button className="paa-ghost" onClick={reset}>新規登録へ戻る</button>}</div>
       <form onSubmit={submit}>
-        <label>商品画像<input type="file" accept="image/*" multiple onChange={e=>setFiles([...e.target.files])}/><small>アップロード時にWebP化・軽量化。1枚目がメイン画像。</small></label>
+        <label>商品画像<input type="file" accept="image/*" multiple required={!editing} onChange={e=>setFiles([...e.target.files])}/><small>アップロード時にWebP化・軽量化。1枚目がメイン画像。</small></label>
         <div className="paa-grid2"><label>商品名<input required value={form.name} onChange={e=>set('name',e.target.value)} placeholder="SIGNAL TEE / WHITE"/></label><label>価格（円）<input required inputMode="numeric" type="number" value={form.price} onChange={e=>set('price',e.target.value)} placeholder="7200"/></label></div>
         <label>商品説明<textarea value={form.description||''} onChange={e=>set('description',e.target.value)} placeholder="数行でOK。空欄でも登録可能。"/></label>
         <div className="paa-grid2"><label>商品カテゴリ<select value={form.category} onChange={e=>set('category',e.target.value)}>{POD_CATEGORIES.map(([v,l])=><option value={v} key={v}>{l}</option>)}</select></label><label>展示タイプ<select value={form.display_template} onChange={e=>set('display_template',e.target.value)}>{DISPLAY_TEMPLATES.map(([v,l])=><option value={v} key={v}>{l}</option>)}</select></label></div>
