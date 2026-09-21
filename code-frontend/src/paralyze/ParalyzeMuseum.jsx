@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { Html, Scroll, ScrollControls, useScroll } from '@react-three/drei';
+import { Html, ScrollControls, useScroll } from '@react-three/drei';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { assetFor, loadMuseum, visibleState } from './catalog';
@@ -170,7 +170,6 @@ export default function ParalyzeMuseum(){
       <color attach="background" args={['#070707']}/>
       <ScrollControls pages={pages} damping={.24} distance={1}>
         <MuseumWorld products={data.products} onSelect={setSelected} onIndex={setActiveIndex} activeIndex={activeIndex}/>
-        <Scroll html><div style={{height:`${pages*100}vh`,width:'100vw',pointerEvents:'none'}}/></Scroll>
       </ScrollControls>
     </Canvas>
     <Detail product={selected} onClose={()=>setSelected(null)}/>
