@@ -33,3 +33,16 @@ upload -> enrich metadata -> generate mockups -> POD create -> product insert ->
 ## Commerce boundary
 `payment_provider`, `payment_product_id`, `payment_price_id`, `purchase_url`, `pod_provider`, `pod_product_id` are provider adapters, not rendering concerns.
 Orders and fulfillment jobs are separate tables, ready for Stripe + POD webhooks/functions.
+
+
+## AI-ready command API
+Supabase Edge Function `catalog-command` is deployed with JWT verification.
+Current authenticated director actions: `create_product`, `update_product`, `publish_product`.
+Future AI enrichment/POD/mockup generation plugs into this boundary without coupling to Three.js.
+
+## Verification
+- RLS CRUD simulation passed for the director email.
+- Future-dated products are hidden from public reads.
+- Full test-product flow passed at the data layer: product -> DROP/AREA -> asset -> exhibit metadata -> detail data -> purchase URL.
+- Supabase security advisor: clean.
+- GitHub Actions production-build workflow: `.github/workflows/paralyze-build.yml`.
