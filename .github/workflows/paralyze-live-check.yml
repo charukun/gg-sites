@@ -1,0 +1,29 @@
+name: PARALYZE AREA live endpoint check
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/paralyze-live-check.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Amplify public route
+        shell: bash
+        run: |
+          set -e
+          URL="https://main.d8nvvqbn8qqtd.amplifyapp.com/paralyze-area"
+          for i in $(seq 1 18); do
+            code=$(curl -L -sS -o /tmp/page.html -w "%{http_code}" "$URL" || true)
+            echo "attempt=$i status=$code"
+            if [ "$code" = "200" ] && grep -q "PARALYZE AREA" /tmp/page.html; then
+              echo "LIVE_URL=$URL"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "Amplify route did not become ready."
+          head -c 500 /tmp/page.html || true
+          exit 1
