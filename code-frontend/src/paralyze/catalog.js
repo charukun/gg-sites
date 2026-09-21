@@ -31,6 +31,7 @@ export const visibleState = (product, now = new Date()) => {
   if (product.stock_status === 'out_of_stock') return { label: 'SOLD OUT', buyable: false };
   if (start && now < start) return { label: `AVAILABLE ${start.toLocaleDateString('ja-JP',{month:'2-digit',day:'2-digit'})}`, buyable: false };
   if (end && now > end) return { label: 'ARCHIVED', buyable: false };
+  if (!product.purchase_url && !product.payment_price_id) return { label: 'COMING SOON', buyable: false };
   return { label: 'BUY', buyable: true };
 };
 
@@ -78,19 +79,41 @@ export async function verifyAdmin() {
   return data ? session.user : null;
 }
 
+async function decodeImage(file) {
+  if (typeof createImageBitmap === 'function') {
+    const bitmap = await createImageBitmap(file);
+    return { source: bitmap, width: bitmap.width, height: bitmap.height, close: () => bitmap.close?.() };
+  }
+  const url = URL.createObjectURL(file);
+  try {
+    const image = await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = url;
+    });
+    return { source: image, width: image.naturalWidth, height: image.naturalHeight, close: () => {} };
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+}
+
 export async function optimizeImage(file, maxSide = 2200, quality = .84) {
-  const bitmap = await createImageBitmap(file);
-  const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
-  const width = Math.max(1, Math.round(bitmap.width * scale));
-  const height = Math.max(1, Math.round(bitmap.height * scale));
-  const canvas = document.createElement('canvas');
-  canvas.width = width; canvas.height = height;
-  const ctx = canvas.getContext('2d', { alpha: true });
-  ctx.drawImage(bitmap, 0, 0, width, height);
-  bitmap.close?.();
-  const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/webp', quality));
-  if (!blob) throw new Error('画像最適化に失敗しました');
-  return { blob, width, height };
+  const decoded = await decodeImage(file);
+  try {
+    const scale = Math.min(1, maxSide / Math.max(decoded.width, decoded.height));
+    const width = Math.max(1, Math.round(decoded.width * scale));
+    const height = Math.max(1, Math.round(decoded.height * scale));
+    const canvas = document.createElement('canvas');
+    canvas.width = width; canvas.height = height;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    ctx.drawImage(decoded.source, 0, 0, width, height);
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/webp', quality));
+    if (!blob) throw new Error('画像最適化に失敗しました');
+    return { blob, width, height };
+  } finally {
+    decoded.close();
+  }
 }
 
 async function uploadVariant(file, productId, label, maxSide, quality) {
@@ -134,6 +157,7 @@ export async function saveProduct(values, files = [], editingId = null) {
     drop_id: values.drop_id || null,
     exhibition_id: values.exhibition_id || null,
     display_template: values.display_template || 'glass_case',
+    display_position: values.display_position || { x: 0, y: 0, z: 0 },
     display_order: Number(values.display_order || 0),
     is_published: !!values.is_published,
     publish_at: values.publish_at || null,
