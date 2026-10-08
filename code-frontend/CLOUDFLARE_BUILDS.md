@@ -16,4 +16,4 @@ Cloudflare Workers & Pages で Worker `gg-sites-ci` を作り、Settings → Bui
 
 依存は `code-frontend/package-lock.json` を使う。Build command はCRAの静的ビルドだけで、Playwright/画面撮影/GPU検査は実行しない。プレビューのアセットURL、ルーティング、Supabase側への接続と権限を実機で確認する。Cloudflare Workerから表示できるだけでなく、本番向け資産のbase pathが変わる点も確認する。
 
-この準備PRで `paralyze-build.yml` の自動ビルドは停止するが、現行GitHub Pagesの公開を担う `paralyze-pages.yml` のpush起動は維持する。Cloudflare Git連携と配信確認が成功し、新URLへの導線を準備してからマージする。GitHub所有の `charukun.github.io/gg-sites/` への配信はマージ後に自動更新されなくなるため、閲覧者向けの切替を別途行う。Supabase endpointの簡易状態確認ワークフローはビルドCIとは別用途なので残す。
+この準備PRで `paralyze-build.yml` の重複自動ビルドは停止するが、現行GitHub Pagesを公開する `paralyze-pages.yml` のpush起動は維持する。Cloudflare Git連携とプレビュー配信が成功し、新URLへの導線ができた後に、**別PR** でGitHub Pages自動公開を停止する。準備PRのマージ時点では `charukun.github.io/gg-sites/` の自動更新を止めない。Supabase endpointの簡易状態確認ワークフローはビルドCIとは別用途なので残す。
