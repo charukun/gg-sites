@@ -1,10 +1,6 @@
 name: PARALYZE AREA build check
+# Cloudflare Workers Builds handles automatic build/deploy; keep this as manual fallback.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'code-frontend/**'
-      - '.github/workflows/paralyze-build.yml'
   workflow_dispatch:
 jobs:
   build:
