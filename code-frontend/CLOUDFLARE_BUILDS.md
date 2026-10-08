@@ -11,7 +11,7 @@ Cloudflare Workers & Pages で Worker `gg-sites-ci` を作り、Settings → Bui
 | Build command | `CI=false PUBLIC_URL=/ REACT_APP_PAGES_BASE=/ npm run build` |
 | Deploy command | `npx --yes wrangler@4.92.0 deploy --config wrangler.jsonc` |
 | Preview command | `npx --yes wrangler@4.92.0 preview --config wrangler.jsonc` |
-| Build variables | `NODE_VERSION=22.13.0`。外部APIに必要な公開フロント用変数は別途既存環境と整合させる |
+| Build variables | `NODE_VERSION=22`。外部APIに必要な公開フロント用変数は別途既存環境と整合させる |
 | Build watch paths | `code-frontend/*` の変更に限定する |
 
 依存は `code-frontend/package-lock.json` を使う。Build command はCRAの静的ビルドだけで、Playwright/画面撮影/GPU検査は実行しない。プレビューのアセットURL、ルーティング、Supabase側への接続と権限を実機で確認する。
