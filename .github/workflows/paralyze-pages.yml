@@ -1,6 +1,10 @@
 name: PARALYZE AREA public preview
-# Cloudflare Workers Builds handles automatic build/deploy; keep this as manual fallback.
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'code-frontend/**'
+      - '.github/workflows/paralyze-pages.yml'
   workflow_dispatch:
 permissions:
   contents: read
