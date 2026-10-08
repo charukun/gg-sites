@@ -14,6 +14,6 @@ Cloudflare Workers & Pages で Worker `gg-sites-ci` を作り、Settings → Bui
 | Build variables | `NODE_VERSION=22`。外部APIに必要な公開フロント用変数は別途既存環境と整合させる |
 | Build watch paths | `code-frontend/*` の変更に限定する |
 
-依存は `code-frontend/package-lock.json` を使う。Build command はCRAの静的ビルドだけで、Playwright/画面撮影/GPU検査は実行しない。プレビューのアセットURL、ルーティング、Supabase側への接続と権限を実機で確認する。
+依存は `code-frontend/package-lock.json` を使う。Build command はCRAの静的ビルドだけで、Playwright/画面撮影/GPU検査は実行しない。プレビューのアセットURL、ルーティング、Supabase側への接続と権限を実機で確認する。Cloudflare Workerから表示できるだけでなく、本番向け資産のbase pathが変わる点も確認する。
 
-このPRの `paralyze-build.yml` / `paralyze-pages.yml` はGitHub Actionsのpush起動を止めて手動に限定するもの。Cloudflare Git連携と配信確認が成功し、新URLへの導線を準備してからマージする。GitHub所有の `charukun.github.io/gg-sites/` への配信はマージ後に自動更新されなくなるため、閲覧者向けの切替を別途行う。Supabase endpointの簡易状態確認ワークフローはビルドCIとは別用途なので残す。
+この準備PRで `paralyze-build.yml` の自動ビルドは停止するが、現行GitHub Pagesの公開を担う `paralyze-pages.yml` のpush起動は維持する。Cloudflare Git連携と配信確認が成功し、新URLへの導線を準備してからマージする。GitHub所有の `charukun.github.io/gg-sites/` への配信はマージ後に自動更新されなくなるため、閲覧者向けの切替を別途行う。Supabase endpointの簡易状態確認ワークフローはビルドCIとは別用途なので残す。
