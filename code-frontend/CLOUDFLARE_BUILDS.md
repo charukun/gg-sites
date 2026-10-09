@@ -1,19 +1,29 @@
 # gg-sites Cloudflare Workers Builds
 
-既存の `code-frontend` (Create React App) を Cloudflare Workers Builds でビルド・公開する設定。既存の GitHub Pages (`/gg-sites/`) と本番URLは、本PRでは変更せず、別Worker `gg-sites-ci` で比較する。旧 PARALYZE AREA 関連ページと現行の `charukun/paralyze-area` は別リポジトリなので、混同しない。
+2026-10-09、Cloudflare MCP/APIでGit接続とmainの自動CIを設定済み。Workerは`gg-sites-ci`、対象は`charukun/gg-sites`の`code-frontend`。既存のGitHub Pagesと正式ドメインは変更しない。`charukun/paralyze-area`とは別リポジトリ。
 
-Cloudflare Workers & Pages で Worker `gg-sites-ci` を作り、Settings → Builds → Git repository `charukun/gg-sites` を接続する。
+## 設定
 
 | 設定 | 値 |
 | --- | --- |
 | Production branch | `main` |
 | Root directory | `code-frontend` |
-| Build command | `CI=false PUBLIC_URL=/ REACT_APP_PAGES_BASE=/ npm run build` |
-| Deploy command | `npx --yes wrangler@4.92.0 deploy --config wrangler.jsonc` |
-| Preview command | `npx --yes wrangler@4.92.0 preview --config wrangler.jsonc` |
-| Build variables | `NODE_VERSION=22`。外部APIに必要な公開フロント用変数は別途既存環境と整合させる |
-| Build watch paths | `code-frontend/*` の変更に限定する |
+| Build command | `npm install --no-audit --no-fund && CI=false PUBLIC_URL=/ REACT_APP_PAGES_BASE=/ npm run build` |
+| Deploy command | `node scripts/cloudflare-verify.mjs stamp build && npx --yes wrangler@4.92.0 deploy --config wrangler.jsonc && node scripts/cloudflare-verify.mjs verify build https://gg-sites-ci.c-okamoto.workers.dev` |
+| Build variables | `NODE_VERSION=22`, `SKIP_DEPENDENCY_INSTALL=1` |
+| Preview builds | 無効 |
+| Build watch paths | `*` |
 
-依存は `code-frontend/package-lock.json` を使う。Build command はCRAの静的ビルドだけで、Playwright/画面撮影/GPU検査は実行しない。プレビューのアセットURL、ルーティング、Supabase側への接続と権限を実機で確認する。Cloudflare Workerから表示できるだけでなく、本番向け資産のbase pathが変わる点も確認する。
+公開先: https://gg-sites-ci.c-okamoto.workers.dev
 
-この準備PRで `paralyze-build.yml` の重複自動ビルドは停止するが、現行GitHub Pagesを公開する `paralyze-pages.yml` のpush起動は維持する。Cloudflare Git連携とプレビュー配信が成功し、新URLへの導線ができた後に、**別PR** でGitHub Pages自動公開を停止する。準備PRのマージ時点では `charukun.github.io/gg-sites/` の自動更新を止めない。Supabase endpointの簡易状態確認ワークフローはビルドCIとは別用途なので残す。
+初回の自動`npm ci`は、既存のpackage.jsonとpackage-lock.jsonが不整合で失敗した。既存Actionsと同じ`npm install`に明示的にそろえ、Cloudflareの自動依存導入をスキップする設定で復旧。package-lock.json自体を同期済みと扱わない。依存の解決方法は従来通りであり、完全なロック再現性を新たに保証するものではない。
+
+## 公開の受入条件
+
+`cloudflare-verify.mjs`は、git HEADと配信ファイルのSHA-256を`build/_ci-release.json`に記録してから公開する。その後、同じoriginから全ファイルをHTTPで読み戻し、bytes/hashとJS/CSS/WASMのMIMEを検証する。同一originのHTML正規化リダイレクトだけを許可する。失敗はCI失敗になる。
+
+ビルド成功と実機の表示品質は別。CIでPlaywrightやGPUを起動しない。既存GitHub Pagesの公開経路は旧URLを維持するため保持する。
+
+手動でAPI再実行するときは、GETで現在のmain SHAを取得し、`branch`と`commit_hash`の両方をPOSTする。branchだけを渡した最初の呼出しではWORKERS_CI_COMMIT_SHAにブランチ名が入った実例があるため、版の証拠には使わない。API鍵は既存Build tokenを再利用し、Gitやログに値を置かない。
+
+作業と受入結果はCI移行PRに記録する。現在の完了判定はCloudflare Build outcomeとCI_VERIFIEDログを確認する。
