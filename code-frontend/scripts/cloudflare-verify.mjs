@@ -35,8 +35,15 @@ if(mode==='stamp'){
  if(receipt.commit!==revision) throw Error('Receipt is from another revision');
  async function verify(file){let last;for(let attempt=0;attempt<3;attempt++){
   try{
-   const url=new URL(file.path.split('/').map(encodeURIComponent).join('/'),base);url.searchParams.set('ci_revision',revision);
-   const r=await fetch(url,{redirect:'error',cache:'no-store',signal:AbortSignal.timeout(30000)});
+   let url=new URL(file.path==='index.html'?'/':file.path.split('/').map(encodeURIComponent).join('/'),base);url.searchParams.set('ci_revision',revision);
+   let r;for(let redirects=0;redirects<5;redirects++){
+    r=await fetch(url,{redirect:'manual',cache:'no-store',signal:AbortSignal.timeout(30000)});
+    if(![301,302,303,307,308].includes(r.status)) break;
+    if(!r.headers.get('location')) throw Error('Redirect without Location');
+    url=new URL(r.headers.get('location'),url);
+    if(url.origin!==base.origin) throw Error('Cross-origin redirect');
+    await r.body?.cancel();
+   }
    if(!r.ok) throw Error(`HTTP ${r.status}`);
    const b=decoded(Buffer.from(await r.arrayBuffer()));
    if(b.length!==file.bytes||hash(b)!==file.sha256) throw Error('Content hash mismatch');
